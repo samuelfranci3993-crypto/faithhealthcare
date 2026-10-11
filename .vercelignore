@@ -1,0 +1,7 @@
+node_modules
+.next
+.scrape
+.pydeps
+out
+*.log
+.DS_Store
