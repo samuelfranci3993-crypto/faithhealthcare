@@ -5,7 +5,7 @@ import { useUser } from "@/lib/user-context";
 import { formatUsd } from "@/lib/price";
 
 export default function StickyQuickOrderBar() {
-  const { items, totalItems, subtotal, setIsCartOpen } = useCart();
+  const { items, totalItems, subtotal, shippingFee, orderTotal, shippingTier, setIsCartOpen } = useCart();
   const { user, isLoggedIn, openAuthModal } = useUser();
 
   if (totalItems === 0) return null;
@@ -17,7 +17,7 @@ export default function StickyQuickOrderBar() {
       (item) => `• ${item.name} (${item.category || "General"}) - Qty: ${item.quantity}`
     );
 
-    let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for my order:\n\n${lines.join("\n")}\n\nEstimated Total: ${formatUsd(subtotal)}`;
+    let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for my order:\n\n${lines.join("\n")}\n\nSubtotal: ${formatUsd(subtotal)}\nEstimated Shipping (${totalItems} items): ${formatUsd(shippingFee)}\nEstimated Order Total: ${formatUsd(orderTotal)}`;
 
     if (user && user.name) {
       msg += `\n\nCustomer Details:\n- Name: ${user.name}\n- Email: ${user.email}\n- Phone: ${user.countryCode} ${user.phone}\n- Destination: ${user.country}`;
@@ -57,7 +57,10 @@ export default function StickyQuickOrderBar() {
               {totalItems} {totalItems === 1 ? "item" : "items"} in cart
             </p>
             <p className="font-bold text-sm text-white">
-              {formatUsd(subtotal)} <span className="text-[10px] font-normal text-slate-400">est.</span>
+              {formatUsd(orderTotal)}{" "}
+              <span className="text-[10px] font-normal text-slate-400">
+                (incl. {formatUsd(shippingFee)} ship)
+              </span>
             </p>
           </div>
         </button>

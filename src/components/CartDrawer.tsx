@@ -16,6 +16,9 @@ export default function CartDrawer() {
     updateQuantity,
     subtotal,
     totalItems,
+    shippingFee,
+    shippingTier,
+    orderTotal,
     clearCart,
   } = useCart();
 
@@ -31,7 +34,9 @@ export default function CartDrawer() {
     });
 
     message += `\n*Total Items*: ${totalItems}`;
-    message += `\n*Estimated Total*: $${subtotal.toFixed(2)}`;
+    message += `\n*Subtotal*: $${subtotal.toFixed(2)}`;
+    message += `\n*Estimated Shipping* (${totalItems} ${totalItems === 1 ? "unit" : "units"} - ${shippingTier}): $${shippingFee.toFixed(2)}`;
+    message += `\n*Estimated Order Total*: $${orderTotal.toFixed(2)}`;
 
     if (user && user.name) {
       message += `\n\n*Customer Details*:`;
@@ -209,14 +214,23 @@ export default function CartDrawer() {
         {/* Footer & Actions */}
         {items.length > 0 && (
           <div className="border-t border-slate-800 bg-slate-950 p-6 space-y-3">
-            <div className="flex items-center justify-between text-sm text-slate-400">
-              <span>Total Items</span>
-              <span className="font-semibold text-white">{totalItems}</span>
+            <div className="flex items-center justify-between text-xs text-slate-400">
+              <span>Subtotal ({totalItems} {totalItems === 1 ? "unit" : "units"})</span>
+              <span className="font-semibold text-white">${subtotal.toFixed(2)}</span>
             </div>
-            <div className="flex items-center justify-between text-base font-bold text-white">
+            <div className="flex items-center justify-between text-xs text-slate-400">
+              <div className="flex flex-col">
+                <span className="text-slate-300">Estimated Shipping</span>
+                <span className="text-[10px] text-slate-500">{shippingTier}</span>
+              </div>
+              <span className="font-semibold text-emerald-400">
+                ${shippingFee.toFixed(2)}
+              </span>
+            </div>
+            <div className="border-t border-slate-800/80 pt-2 flex items-center justify-between text-base font-bold text-white">
               <span>Est. Order Total</span>
               <span className="text-xl font-extrabold text-emerald-400">
-                ${subtotal.toFixed(2)}
+                ${orderTotal.toFixed(2)}
               </span>
             </div>
 
@@ -269,7 +283,8 @@ export default function CartDrawer() {
               quantity: i.quantity,
               price: i.price,
             })),
-            totalPrice: subtotal,
+            totalPrice: orderTotal,
+            shippingFee,
           }}
         />
       )}

@@ -25,6 +25,7 @@ type EnquiryModalProps = {
   cartSummary?: {
     items: { name: string; quantity: number; price: number }[];
     totalPrice: number;
+    shippingFee?: number;
   };
 };
 
@@ -408,8 +409,10 @@ export default function EnquiryModal({
   const [error, setError] = useState("");
   const [phoneBlurred, setPhoneBlurred] = useState(false);
   const [emailBlurred, setEmailBlurred] = useState(false);
+  const totalCartQty =
+    cartSummary?.items.reduce((s, i) => s + i.quantity, 0) || 0;
   const initialMsg = cartSummary
-    ? `I would like to place a bulk enquiry for:\n${cartSummary.items.map((i) => `- ${i.name} (Qty: ${i.quantity})`).join("\n")}\nTotal Est: $${cartSummary.totalPrice.toFixed(2)}`
+    ? `I would like to place a bulk enquiry for:\n${cartSummary.items.map((i) => `- ${i.name} (Qty: ${i.quantity})`).join("\n")}${cartSummary.shippingFee !== undefined ? `\n\nEstimated Shipping (${totalCartQty} units): $${cartSummary.shippingFee.toFixed(2)}` : ""}\nTotal Est: $${cartSummary.totalPrice.toFixed(2)}`
     : interestMessage(medicineName, "");
   const [form, setForm] = useState<FormState>({
     name: "",

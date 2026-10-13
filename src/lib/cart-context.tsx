@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import { calculateShipping } from "@/lib/shipping";
 
 export interface CartItem {
   id: string;
@@ -29,6 +30,9 @@ interface CartContextType {
   clearCart: () => void;
   totalItems: number;
   subtotal: number;
+  shippingFee: number;
+  shippingTier: string;
+  orderTotal: number;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
   toast: ToastState | null;
@@ -115,6 +119,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+  const { shippingFee, tierLabel: shippingTier } = calculateShipping(totalItems);
+  const orderTotal = subtotal > 0 ? subtotal + shippingFee : 0;
 
   return (
     <CartContext.Provider
@@ -126,6 +132,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         clearCart,
         totalItems,
         subtotal,
+        shippingFee,
+        shippingTier,
+        orderTotal,
         isCartOpen,
         setIsCartOpen,
         toast,

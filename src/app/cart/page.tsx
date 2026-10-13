@@ -14,6 +14,9 @@ export default function CartPage() {
     updateQuantity,
     subtotal,
     totalItems,
+    shippingFee,
+    shippingTier,
+    orderTotal,
     clearCart,
   } = useCart();
   const { user, openAuthModal } = useUser();
@@ -25,14 +28,15 @@ export default function CartPage() {
   const handleWhatsAppCheckout = () => {
     if (items.length === 0) return;
 
-
     let message = `Hello Faith Health Care team,\nI would like to place an instant wholesale order quote for the following items:\n\n`;
     items.forEach((item, index) => {
       message += `${index + 1}. *${item.name}*\n   Qty: ${item.quantity} | Est: $${(item.price * item.quantity).toFixed(2)}\n`;
     });
 
     message += `\n*Total Items*: ${totalItems}`;
-    message += `\n*Estimated Total*: $${subtotal.toFixed(2)}`;
+    message += `\n*Subtotal*: $${subtotal.toFixed(2)}`;
+    message += `\n*Estimated Shipping* (${totalItems} ${totalItems === 1 ? "unit" : "units"} - ${shippingTier}): $${shippingFee.toFixed(2)}`;
+    message += `\n*Estimated Order Total*: $${orderTotal.toFixed(2)}`;
 
     if (user && user.name) {
       message += `\n\n*Customer Details*:`;
@@ -205,20 +209,43 @@ export default function CartPage() {
 
             <div className="space-y-3 text-sm">
               <div className="flex justify-between text-slate-600">
-                <span>Total Items</span>
-                <span className="font-bold text-slate-900">{totalItems}</span>
+                <span>Subtotal ({totalItems} {totalItems === 1 ? "item" : "items"})</span>
+                <span className="font-bold text-slate-900">${subtotal.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-slate-600">
-                <span>Shipping Est.</span>
-                <span className="text-xs font-semibold text-emerald-700">
-                  Calculated upon enquiry
-                </span>
+              <div className="flex justify-between items-start text-slate-600">
+                <div>
+                  <span className="block font-medium text-slate-700">Estimated Shipping</span>
+                  <span className="text-[11px] text-slate-500">{shippingTier}</span>
+                </div>
+                <span className="font-bold text-emerald-600">${shippingFee.toFixed(2)}</span>
               </div>
               <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-bold text-slate-900">
                 <span>Estimated Total</span>
                 <span className="text-xl font-black text-slate-950">
-                  ${subtotal.toFixed(2)}
+                  ${orderTotal.toFixed(2)}
                 </span>
+              </div>
+            </div>
+
+            {/* Shipping Tier Breakdown Guide */}
+            <div className="rounded-xl border border-sky-100 bg-sky-50/70 p-3 text-[11px] text-slate-600">
+              <p className="font-bold text-sky-900 mb-1">📦 Quantity-Based Shipping Tiers</p>
+              <div className="space-y-0.5 text-[10.5px]">
+                <p className={totalItems >= 1 && totalItems <= 5 ? "font-bold text-sky-800" : ""}>
+                  • 1–5 units: <strong>$15.00</strong> (Express Air Courier)
+                </p>
+                <p className={totalItems >= 6 && totalItems <= 15 ? "font-bold text-sky-800" : ""}>
+                  • 6–15 units: <strong>$25.00</strong> (Standard Courier)
+                </p>
+                <p className={totalItems >= 16 && totalItems <= 30 ? "font-bold text-sky-800" : ""}>
+                  • 16–30 units: <strong>$40.00</strong> (Medium Parcel)
+                </p>
+                <p className={totalItems >= 31 && totalItems <= 50 ? "font-bold text-sky-800" : ""}>
+                  • 31–50 units: <strong>$60.00</strong> (Bulk Freight)
+                </p>
+                <p className={totalItems > 50 ? "font-bold text-sky-800" : ""}>
+                  • 50+ units: <strong>$60.00 + $1.00/unit</strong>
+                </p>
               </div>
             </div>
 
@@ -261,7 +288,8 @@ export default function CartPage() {
               quantity: i.quantity,
               price: i.price,
             })),
-            totalPrice: subtotal,
+            totalPrice: orderTotal,
+            shippingFee,
           }}
         />
       )}
