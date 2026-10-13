@@ -27,8 +27,8 @@ export default function HeaderReviews({
         .catch(() => {});
     };
     load();
-    window.addEventListener("lifecure:reviews-updated", load);
-    return () => window.removeEventListener("lifecure:reviews-updated", load);
+    window.addEventListener("faithhealthcare:reviews-updated", load);
+    return () => window.removeEventListener("faithhealthcare:reviews-updated", load);
   }, []);
 
   if (!stats.count) {

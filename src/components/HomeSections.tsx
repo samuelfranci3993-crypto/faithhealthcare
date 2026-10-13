@@ -14,259 +14,179 @@ type HomeSectionsProps = {
   insightCount: number;
 };
 
+const TOP_MANUFACTURERS = [
+  { name: "Cipla", subtitle: "Respiratory & Anti-infectives", origin: "Mumbai, India" },
+  { name: "Sun Pharma", subtitle: "Specialty & Chronic Care", origin: "Vadodara, India" },
+  { name: "Dr. Reddy's", subtitle: "Generics & Oncology", origin: "Hyderabad, India" },
+  { name: "Torrent Pharma", subtitle: "Cardiovascular & CNS", origin: "Ahmedabad, India" },
+  { name: "Lupin", subtitle: "Anti-TB & Pediatrics", origin: "Mumbai, India" },
+  { name: "Zydus", subtitle: "Vaccines & Therapeutics", origin: "Ahmedabad, India" },
+  { name: "Abbott", subtitle: "Nutrition & Hospital Care", origin: "Mumbai / US" },
+  { name: "Alkem Labs", subtitle: "Anti-infectives & Gastro", origin: "Mumbai, India" },
+  { name: "Glenmark", subtitle: "Dermatology & Respiratory", origin: "Mumbai, India" },
+  { name: "Mankind", subtitle: "Affordable Formulations", origin: "New Delhi, India" },
+  { name: "Intas Pharma", subtitle: "Biosimilars & Oncology", origin: "Ahmedabad, India" },
+  { name: "Macleods", subtitle: "Anti-retroviral & Anti-TB", origin: "Mumbai, India" },
+];
+
 export default function HomeSections({
   categories,
   featured,
   total,
   insightCount,
 }: HomeSectionsProps) {
-
   return (
     <>
+      {/* SECTION 1: 1mg-Style Shop by Health Concerns */}
       <section
         id="categories"
-        className="relative mx-auto max-w-6xl scroll-mt-24 px-5 py-14 md:px-8 md:py-16"
+        className="relative mx-auto max-w-7xl scroll-mt-24 px-4 py-10 sm:px-6 lg:px-8"
       >
-        <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-xl">
-            <div className="flex items-start gap-3">
-              <span
-                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
-                style={{
-                  background: "rgba(5, 150, 105, 0.12)",
-                  color: "#059669",
-                }}
-                aria-hidden
-              >
-                <GridIcon />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between border-b border-slate-200/80 pb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center rounded-md bg-brand-light px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-brand">
+                Therapeutic Areas
               </span>
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-emerald-700 font-semibold">
-                  Product categories
-                </p>
-                <h2 className="mt-1 font-display text-2xl text-ink md:text-3xl">
-                  Find medicines by use
-                </h2>
-              </div>
+              <span className="text-xs text-slate-500 font-medium">
+                · {total} Active Products
+              </span>
             </div>
-            <p className="mt-2 text-sm text-ink-soft/80 md:pl-12">
-              Tap a category to open matching products — then filter by tablet,
-              capsule, injection, or other forms.
+            <h2 className="mt-1 text-2xl font-extrabold text-slate-900 sm:text-3xl tracking-tight">
+              Shop by Health Concerns
+            </h2>
+            <p className="mt-1 text-sm text-slate-600">
+              Browse top pharmaceutical formulations categorized by medical use and dosage form.
             </p>
           </div>
 
-          <ul className="flex flex-wrap gap-1.5 md:justify-end">
-            <li
-              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium"
-              style={{
-                background: "rgba(5, 150, 105, 0.12)",
-                color: "#059669",
-              }}
-            >
-              <LayersIcon />
-              {total} medicines
-            </li>
-            <li
-              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium"
-              style={{
-                background: "rgba(26, 95, 122, 0.12)",
-                color: "#1a5f7a",
-              }}
-            >
-              <HeartIcon />
-              By therapeutic use
-            </li>
-            <li
-              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium"
-              style={{
-                background: "rgba(196, 138, 26, 0.14)",
-                color: "#9a6a10",
-              }}
-            >
-              <CapsuleChipIcon />
-              Tablet · Capsule · Injection
-            </li>
-          </ul>
-        </header>
+          <Link
+            href="/catalog"
+            className="inline-flex items-center gap-1.5 self-start sm:self-auto rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 shadow-xs hover:border-brand hover:text-brand hover:bg-brand-light/30 transition-colors"
+          >
+            <span>See All Categories</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+            </svg>
+          </Link>
+        </div>
 
         <CategoryGrid categories={categories} />
       </section>
 
-      <section className="border-y border-line bg-white/35 py-14 md:py-16">
-        <div className="mx-auto max-w-6xl px-5 md:px-8">
-          <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-xl">
-              <div className="flex items-start gap-3">
-                <span
-                  className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
-                  style={{
-                    background: "rgba(196, 138, 26, 0.14)",
-                    color: "#9a6a10",
-                  }}
-                  aria-hidden
-                >
-                  <StarIcon />
+      {/* SECTION 2: 1mg-Style Featured Products Carousel */}
+      <section className="border-y border-slate-200/80 bg-white py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-6">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center rounded-md bg-emerald-50 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-emerald-700">
+                  Trending in Export
                 </span>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-sage">
-                    Featured
-                  </p>
-                  <h2 className="mt-1 font-display text-2xl text-ink md:text-3xl">
-                    Selected from the catalog
-                  </h2>
-                </div>
+                <span className="text-xs text-slate-500 font-medium">
+                  · High-Demand Batches
+                </span>
               </div>
-              <p className="mt-2 text-sm text-ink-soft/80 md:pl-12">
-                A rotating pick of popular wholesale products — swipe or use the
-                arrows to browse three at a time.
+              <h2 className="mt-1 text-2xl font-extrabold text-slate-900 sm:text-3xl tracking-tight">
+                Top Selling Wholesale Medicines
+              </h2>
+              <p className="mt-1 text-sm text-slate-600">
+                Popular international formulations with verified COA, export packaging, and fast dispatch.
               </p>
             </div>
 
             <Link
               href="/catalog"
-              className="inline-flex items-center gap-1.5 self-start rounded-full border border-emerald-600/30 bg-emerald-50/80 px-4 py-2 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-600 hover:text-white md:self-end"
+              className="inline-flex items-center gap-1 rounded-lg bg-brand px-4 py-2 text-xs font-bold text-white shadow-xs hover:bg-hover transition-colors"
             >
-              View all medicines
-              <ArrowIcon />
+              <span>Explore All {total} Medicines</span>
+              <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+              </svg>
             </Link>
-          </header>
-
-          <div className="mt-8 md:mt-10">
-            <FeaturedCarousel medicines={featured} />
           </div>
+
+          <FeaturedCarousel medicines={featured} />
         </div>
       </section>
 
-      <section
-        data-scroll
-        className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-14"
-      >
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-xl">
-            <div className="flex items-start gap-3">
-              <span
-                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
-                style={{
-                  background: "rgba(10, 82, 76, 0.12)",
-                  color: "#0a524c",
-                }}
-                aria-hidden
-              >
-                <ArticleIcon />
-              </span>
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-sage">
-                  Insights
-                </p>
-                <h2 className="mt-1 font-display text-2xl text-ink md:text-3xl">
-                  Wholesale guides by category
-                </h2>
-              </div>
-            </div>
-            <p className="mt-2 text-sm text-ink-soft/80 md:pl-12">
-              Trade articles for export partners — linked to catalog categories.
-              Not medical advice.
+      {/* SECTION 3: 1mg Top Pharmaceutical Manufacturers */}
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between border-b border-slate-200/80 pb-4">
+          <div>
+            <span className="inline-flex items-center rounded-md bg-amber-50 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-amber-700">
+              Verified Supply Network
+            </span>
+            <h2 className="mt-1 text-2xl font-extrabold text-slate-900 sm:text-3xl tracking-tight">
+              Top Pharmaceutical Brands &amp; Manufacturers
+            </h2>
+            <p className="mt-1 text-sm text-slate-600">
+              We source directly from licensed, WHO-GMP certified Indian pharma corporations.
             </p>
           </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {TOP_MANUFACTURERS.map((m) => (
+            <Link
+              key={m.name}
+              href={`/catalog?q=${encodeURIComponent(m.name)}`}
+              className="group flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs hover:border-brand/40 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+            >
+              <div className="flex items-center justify-between">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 font-extrabold text-xs text-slate-700 group-hover:bg-brand-light group-hover:text-brand transition-colors">
+                  {m.name.slice(0, 2).toUpperCase()}
+                </span>
+                <span className="text-[10px] text-slate-400 font-medium">
+                  {m.origin}
+                </span>
+              </div>
+              <div className="mt-3">
+                <h4 className="text-sm font-bold text-slate-900 group-hover:text-brand transition-colors">
+                  {m.name}
+                </h4>
+                <p className="line-clamp-1 text-[11px] text-slate-500">
+                  {m.subtitle}
+                </p>
+              </div>
+              <div className="mt-2.5 flex items-center justify-between border-t border-slate-100 pt-2 text-[10px] font-semibold text-brand">
+                <span>View Products</span>
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 4: 1mg Trust & Guarantees Band */}
+      <TrustBand />
+
+      {/* SECTION 5: Category Insights / Trade Guides */}
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between border-b border-slate-200/80 pb-4">
+          <div>
+            <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-blue-700">
+              Knowledge Base
+            </span>
+            <h2 className="mt-1 text-2xl font-extrabold text-slate-900 sm:text-3xl tracking-tight">
+              Export Insights &amp; Market Guides
+            </h2>
+            <p className="mt-1 text-sm text-slate-600">
+              Comprehensive regulatory, dosage form, and wholesale trade documentation for international importers.
+            </p>
+          </div>
+
           <Link
             href="/insights"
-            className="inline-flex items-center gap-1.5 self-start rounded-full border border-teal/30 bg-teal-mist/60 px-4 py-2 text-sm font-medium text-teal transition hover:border-teal hover:bg-teal hover:text-white md:self-end"
+            className="inline-flex items-center gap-1.5 self-start sm:self-auto rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 shadow-xs hover:border-brand hover:text-brand hover:bg-brand-light/30 transition-colors"
           >
-            Read {insightCount} guides
-            <ArrowIcon />
+            <span>Read All {insightCount} Guides</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+            </svg>
           </Link>
         </div>
       </section>
-
-      <TrustBand />
     </>
   );
 }
-
-function StarIcon() {
-  return (
-    <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
-      <path d="M10 2.5l2.2 4.5 5 .7-3.6 3.5.9 5L10 13.8 5.5 16.2l.9-5L2.8 7.7l5-.7L10 2.5z" />
-    </svg>
-  );
-}
-
-function GridIcon() {
-  return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function LayersIcon() {
-  return (
-    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M12 4l8 4-8 4-8-4 8-4zm-8 8l8 4 8-4M4 16l8 4 8-4"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function HeartIcon() {
-  return (
-    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M19.5 12.5c1.5-1.6 1.5-4.2-.2-5.8a3.9 3.9 0 00-5.3.3L12 9l-1.9-2a3.9 3.9 0 00-5.4-.2c-1.7 1.6-1.7 4.2-.1 5.8L12 20l7.5-7.5z"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function CapsuleChipIcon() {
-  return (
-    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M8.5 15.5l7-7a3.5 3.5 0 015 5l-7 7a3.5 3.5 0 01-5-5z"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ArrowIcon() {
-  return (
-    <svg className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" aria-hidden>
-      <path
-        d="M3 8h10M9 4l4 4-4 4"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ArticleIcon() {
-  return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M6 4h12v16H6V4zM9 8h6M9 12h6M9 16h4"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-

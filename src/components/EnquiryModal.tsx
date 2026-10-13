@@ -593,14 +593,13 @@ export default function EnquiryModal({
     if (!validateForm()) return;
 
     const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
-    if (!number) {
-      setError("WhatsApp number is not configured. Please try again later.");
-      return;
-    }
-
     const text = encodeURIComponent(buildMessage());
-    const webUrl = `https://wa.me/${number}?text=${text}`;
-    const appUrl = `whatsapp://send?phone=${number}&text=${text}`;
+    const webUrl = number
+      ? `https://wa.me/${number}?text=${text}`
+      : `https://wa.me/?text=${text}`;
+    const appUrl = number
+      ? `whatsapp://send?phone=${number}&text=${text}`
+      : `whatsapp://send?text=${text}`;
 
     setChannel("whatsapp");
     setRedirectUrl(webUrl);
@@ -653,7 +652,7 @@ export default function EnquiryModal({
 
   const channelLabel = channel === "telegram" ? "Telegram" : "WhatsApp";
   const telegramUser = (
-    process.env.NEXT_PUBLIC_TELEGRAM_USERNAME || "V_10120"
+    process.env.NEXT_PUBLIC_TELEGRAM_USERNAME || ""
   ).replace(/^@/, "");
 
   // Portal to body so parent card transforms don't trap position:fixed

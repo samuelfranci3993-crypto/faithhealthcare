@@ -247,7 +247,6 @@ def classify_parent(m: dict) -> str:
                 m.get("name") or "",
                 m.get("composition") or "",
                 m.get("brand") or "",
-                m.get("indiaMartCategory") or "",
                 m.get("description") or "",
                 " ".join((m.get("specs") or {}).values()),
             ]

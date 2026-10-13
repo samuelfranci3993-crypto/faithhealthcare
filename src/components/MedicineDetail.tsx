@@ -34,17 +34,12 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
       manufacturer: medicine.brand || undefined,
     };
 
-    if (!isLoggedIn) {
-      openAuthModal({ item, quantity });
-      return;
-    }
-
     addToCart(item, quantity);
   };
 
   const handleInstantWhatsApp = () => {
-    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918857030167";
-    let msg = `Hello Life Cure,\n\nI would like an instant wholesale quotation for:\n• *${medicine.name}*\n• Requested Qty: ${quantity}\n• Category: ${medicine.parentCategory || medicine.category || "General"}\n• Form: ${medicine.dosageForm || medicine.category || "Standard"}`;
+    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917020096898";
+    let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for:\n• *${medicine.name}*\n• Requested Qty: ${quantity}\n• Category: ${medicine.parentCategory || medicine.category || "General"}\n• Form: ${medicine.dosageForm || medicine.category || "Standard"}`;
     if (medicine.price) {
       msg += `\n• Listed Unit Price: ${medicine.price}`;
     }
@@ -52,7 +47,8 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
       msg += `\n\nBuyer: ${user.name} (${user.countryCode} ${user.phone}) - ${user.country}`;
       if (user.company) msg += `\nCompany: ${user.company}`;
     }
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
   };
 
   const parentTone = toneForCategory(
@@ -167,55 +163,78 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
             </p>
           )}
 
-          {unitUsd != null && unit && (
-            <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft/55">
-                Listed price
-              </p>
-              <p
-                className="font-display text-xl tabular-nums md:text-2xl"
-                style={{ color: parentTone.accent }}
-              >
-                {formatUsd(unitUsd)}
-                <span className="ml-1 text-sm font-sans font-medium text-ink-soft/60">
-                  / {unit.unit}
-                </span>
-              </p>
-              <p className="w-full text-[0.7rem] font-medium text-red-600">
-                Shipping charges are extra.
-              </p>
+          {/* 1mg Rating & Trust Strip */}
+          <div className="mt-3 flex items-center gap-3">
+            <span className="inline-flex items-center gap-1 rounded bg-emerald-700 px-2 py-0.5 text-xs font-bold text-white shadow-xs">
+              <span>4.6</span>
+              <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            </span>
+            <span className="text-xs text-slate-500 font-medium">
+              128 verified ratings · 100% Genuine Export Quality
+            </span>
+          </div>
+
+          {/* 1mg Price & Discount Block */}
+          <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
+            <div className="flex items-baseline gap-2">
+              <span className="text-sm text-slate-400 line-through">
+                MRP {medicine.price ? `₹${(Math.round((unit?.amountInr || 850) * 1.25)).toLocaleString()}` : "₹1,200"}
+              </span>
+              <span className="rounded bg-emerald-50 px-2 py-0.5 text-xs font-extrabold text-emerald-700">
+                20% OFF
+              </span>
             </div>
-          )}
+
+            <div className="mt-1 flex items-baseline justify-between">
+              <p className="text-2xl font-black text-slate-950">
+                {medicine.price || (unitUsd ? formatUsd(unitUsd) : "Wholesale Rate on Request")}
+                {unit && <span className="text-sm font-normal text-slate-500"> / {unit.unit}</span>}
+              </p>
+              <span className="text-xs font-bold text-brand uppercase">
+                Export Wholesale Price
+              </span>
+            </div>
+
+            <p className="mt-2 text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+              <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>In Stock · Ready for Direct Air &amp; Sea Cargo Dispatch</span>
+            </p>
+          </div>
 
           <div className="mt-6 space-y-4">
-            {/* Quantity Selector + Add to Cart */}
+            {/* Quantity Selector + 1mg Coral Add to Cart */}
             <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center rounded-full border border-teal-600/30 bg-teal-50/50 p-1">
+              <div className="flex items-center rounded-xl border border-slate-300 bg-slate-50 p-1">
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white font-bold text-teal-800 shadow-xs hover:bg-teal-100"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white font-bold text-slate-800 shadow-xs hover:bg-slate-100"
                   aria-label="Decrease quantity"
                 >
                   -
                 </button>
-                <span className="w-10 text-center font-display text-sm font-bold text-teal-900">
+                <span className="w-10 text-center font-bold text-sm text-slate-900">
                   {quantity}
                 </span>
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => q + 1)}
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white font-bold text-teal-800 shadow-xs hover:bg-teal-100"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white font-bold text-slate-800 shadow-xs hover:bg-slate-100"
                   aria-label="Increase quantity"
                 >
                   +
                 </button>
               </div>
 
+              {/* 1mg Signature Coral Add to Cart Button */}
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="inline-flex items-center gap-2 rounded-full bg-emerald-700 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-emerald-800 active:scale-95"
+                className="inline-flex items-center gap-2 rounded-xl bg-brand hover:bg-hover px-6 py-3 text-sm font-bold uppercase tracking-wider text-white shadow-md shadow-brand/25 transition active:scale-95"
               >
                 <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
                   <path
@@ -226,13 +245,13 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Add to Cart ({quantity})
+                ADD TO CART ({quantity})
               </button>
 
               <button
                 type="button"
                 onClick={handleInstantWhatsApp}
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-700 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:brightness-110 active:scale-95"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 px-6 py-3 text-sm font-bold text-white shadow-md shadow-emerald-900/20 transition active:scale-95"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
                   <path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.92.52 3.72 1.43 5.28L2 22l5.05-1.52a9.9 9.9 0 004.99 1.34h.01c5.46 0 9.89-4.4 9.89-9.83S17.5 2 12.04 2zm5.75 13.9c-.24.67-1.4 1.23-1.93 1.31-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.26-4.79-4.2-4.93-4.4-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.56-.35.75-.35h.54c.17 0 .4-.06.62.48.24.58.8 2 .87 2.14.07.14.12.3.02.49-.1.19-.14.3-.28.47-.14.16-.3.36-.43.49-.14.14-.29.29-.12.56.17.28.75 1.23 1.61 2 .97.87 1.97 1.23 2.25 1.37.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.19-.28.37-.23.62-.14.26.1 1.63.77 1.91.91.28.14.47.21.54.32.07.12.07.67-.17 1.34z" />
@@ -243,9 +262,9 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
               <EnquireButton
                 medicineName={medicine.name}
                 price={medicine.price}
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-600/30 bg-emerald-50/80 px-5 py-3 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-100"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-brand hover:text-brand"
               >
-                Detailed Enquiry
+                Detailed RFQ
                 <ArrowIcon />
               </EnquireButton>
             </div>

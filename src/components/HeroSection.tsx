@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import ExpressSearchHero from "./ExpressSearchHero";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import type { Medicine } from "@/types/medicine";
+import ExpressSearchHero from "./ExpressSearchHero";
 
 type HeroSectionProps = {
   totalMedicines?: number;
@@ -12,372 +13,226 @@ type HeroSectionProps = {
   medicines?: Medicine[];
 };
 
+const PROMO_SLIDES = [
+  {
+    tag: "FAITH HEALTH CARE · GLOBAL EXPORT DESK",
+    title: "Genuine Wholesale Medicines Direct from Certified WHO-GMP Facilities",
+    desc: "Tablets, capsules, injections, creams, and specialty formulations. Direct WhatsApp enquiry with instant quote in seconds.",
+    ctaText: "Explore Full Catalog",
+    ctaHref: "/catalog",
+    badge: "Direct Wholesale Pricing · 150+ Formulations",
+    bgGradient: "from-[#e0f2fe] via-[#f0f9ff] to-[#ffffff]",
+    accentColor: "#0284c7",
+  },
+  {
+    tag: "ANTIBIOTICS & INFECTIOUS DISEASE LINES",
+    title: "High-Demand Antibiotic Formulations in Bulk Export Packs",
+    desc: "Amoxicillin + Clavulanate, Azithromycin, Ciprofloxacin, Doxycycline & Cefixime ready for immediate dispatch.",
+    ctaText: "View Antibiotics Formulary",
+    ctaHref: "/catalog?category=Antibiotics",
+    badge: "Instant WhatsApp Quotation in 60s",
+    bgGradient: "from-[#f0fdf4] via-[#f7fee7] to-[#ffffff]",
+    accentColor: "#059669",
+  },
+  {
+    tag: "MEN'S HEALTH & PERFORMANCE LINES",
+    title: "Full Range of Sildenafil, Tadalafil & Vardenafil Brands",
+    desc: "Cenforce, Vidalista, Fildena, Kamagra & specialty strengths available for wholesale distribution worldwide.",
+    ctaText: "View ED Category Range",
+    ctaHref: "/catalog?category=ED+Medicines",
+    badge: "Discreet Global Packing & Tracking",
+    bgGradient: "from-[#eff6ff] via-[#f0f9ff] to-[#ffffff]",
+    accentColor: "#2563eb",
+  },
+];
+
+const QUICK_SERVICE_TILES = [
+  {
+    title: "Order Medicines",
+    desc: "150+ formulations in stock",
+    icon: (
+      <svg className="h-6 w-6 text-sky-600" viewBox="0 0 24 24" fill="none">
+        <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    href: "/catalog",
+    badge: "150+ Products",
+    bg: "bg-sky-50",
+  },
+  {
+    title: "Instant 1-Click Quote",
+    desc: "Direct pricing on WhatsApp",
+    icon: (
+      <svg className="h-6 w-6 text-emerald-600" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.92.52 3.72 1.43 5.28L2 22l5.05-1.52a9.9 9.9 0 004.99 1.34h.01c5.46 0 9.89-4.4 9.89-9.83S17.5 2 12.04 2zm5.75 13.9c-.24.67-1.4 1.23-1.93 1.31-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.26-4.79-4.2-4.93-4.4-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.56-.35.75-.35h.54c.17 0 .4-.06.62.48.24.58.8 2 .87 2.14.07.14.12.3.02.49-.1.19-.14.3-.28.47-.14.16-.3.36-.43.49-.14.14-.29.29-.12.56.17.28.75 1.23 1.61 2 .97.87 1.97 1.23 2.25 1.37.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.19-.28.37-.23.62-.14.26.1 1.63.77 1.91.91.28.14.47.21.54.32.07.12.07.67-.17 1.34z" />
+      </svg>
+    ),
+    href: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
+      ? `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Faith Health Care, I would like an instant wholesale quotation.")}`
+      : `https://wa.me/917020096898?text=${encodeURIComponent("Hello Faith Health Care, I would like an instant wholesale quotation.")}`,
+    badge: "0 Forms Needed",
+    bg: "bg-emerald-50",
+    isExternal: true,
+  },
+  {
+    title: "Bulk RFQ / Inquiry",
+    desc: "Wholesale trade discount",
+    icon: (
+      <svg className="h-6 w-6 text-blue-600" viewBox="0 0 24 24" fill="none">
+        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    href: "/about",
+    badge: "Fast Dispatch",
+    bg: "bg-blue-50",
+  },
+  {
+    title: "Verified Credentials",
+    desc: "GST & IEC export certified",
+    icon: (
+      <svg className="h-6 w-6 text-amber-600" viewBox="0 0 24 24" fill="none">
+        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    href: "/policies",
+    badge: "100% Genuine",
+    bg: "bg-amber-50",
+  },
+];
+
 export default function HeroSection({
-  totalMedicines = 0,
-  reviewAverage = 0,
-  reviewCount = 0,
+  totalMedicines = 150,
+  reviewAverage = 4.8,
+  reviewCount = 28,
   medicines = [],
 }: HeroSectionProps) {
-  const [visible, setVisible] = useState(true);
-  const [cueShown, setCueShown] = useState(true);
-  const farRef = useRef<HTMLDivElement>(null);
-  const midRef = useRef<HTMLDivElement>(null);
-  const nearRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const brandRef = useRef<HTMLSpanElement>(null);
-  const pharmaRef = useRef<HTMLSpanElement>(null);
-  const targetY = useRef(0);
-  const currentY = useRef(0);
-  const entrance = useRef(0);
-  const rafRef = useRef(0);
+  const [activeSlide, setActiveSlide] = useState(0);
 
+  // Auto rotate promo slides
   useEffect(() => {
-    const start = window.setTimeout(() => setVisible(true), 80);
-    return () => window.clearTimeout(start);
+    const timer = setInterval(() => {
+      setActiveSlide((curr) => (curr + 1) % PROMO_SLIDES.length);
+    }, 6000);
+    return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const reduceMotion = media.matches;
+  const slide = PROMO_SLIDES[activeSlide];
 
-    const forceContentVisible = () => {
-      entrance.current = 1;
-      if (contentRef.current) {
-        contentRef.current.style.opacity = "1";
-        contentRef.current.style.transform = "translate3d(0, 0, 0)";
-      }
-      if (brandRef.current) {
-        brandRef.current.style.opacity = "1";
-      }
-      if (pharmaRef.current) {
-        pharmaRef.current.style.opacity = "1";
-      }
-      setVisible(true);
-    };
-
-    if (reduceMotion) {
-      forceContentVisible();
-      if (brandRef.current) brandRef.current.style.transform = "none";
-      if (pharmaRef.current) pharmaRef.current.style.transform = "none";
-      setCueShown(true);
-      return;
-    }
-
-    const onScroll = () => {
-      targetY.current = window.scrollY;
-      setCueShown(window.scrollY < 48);
-    };
-
-    const tick = () => {
-      entrance.current += (1 - entrance.current) * 0.06;
-      if (1 - entrance.current < 0.002) entrance.current = 1;
-
-      currentY.current += (targetY.current - currentY.current) * 0.085;
-      if (Math.abs(targetY.current - currentY.current) < 0.05) {
-        currentY.current = targetY.current;
-      }
-
-      const y = currentY.current;
-      const scrollFade = Math.max(0, Math.min(1, 1 - y / 820));
-      const opacity = entrance.current * scrollFade;
-
-      if (farRef.current) {
-        farRef.current.style.transform = `translate3d(0, ${y * 0.42}px, 0) scale(1.12)`;
-        farRef.current.style.opacity = String(0.35 + entrance.current * 0.65);
-      }
-      if (midRef.current) {
-        midRef.current.style.transform = `translate3d(${y * -0.045}px, ${y * -0.16}px, 0)`;
-        midRef.current.style.opacity = String(0.35 + entrance.current * 0.65);
-      }
-      if (nearRef.current) {
-        nearRef.current.style.transform = `translate3d(0, ${y * 0.26}px, 0)`;
-        nearRef.current.style.opacity = String(entrance.current);
-      }
-      if (gridRef.current) {
-        gridRef.current.style.transform = `translate3d(0, ${y * 0.22}px, 0)`;
-        gridRef.current.style.opacity = String(entrance.current * 0.5);
-      }
-      if (contentRef.current) {
-        contentRef.current.style.transform = `translate3d(0, ${y * 0.14}px, 0)`;
-        contentRef.current.style.opacity = String(opacity);
-      }
-
-      // Vitalwave: soft 3D revolving (#1) + parallax drift (#3)
-      const p = Math.min(1, y / 540);
-      if (brandRef.current) {
-        const rotateY = p * 58;
-        const driftY = y * 0.32;
-        const driftX = y * -0.055;
-        const scale = 1 - p * 0.1;
-        brandRef.current.style.transform = `translate3d(${driftX}px, ${driftY}px, 0) rotateY(${rotateY}deg) scale(${scale})`;
-        brandRef.current.style.opacity = String(Math.max(0.15, 1 - p * 0.55));
-      }
-      if (pharmaRef.current) {
-        // Lighter parallax, no spin — keeps the lockup readable
-        pharmaRef.current.style.transform = `translate3d(${y * 0.03}px, ${y * 0.18}px, 0)`;
-        pharmaRef.current.style.opacity = String(Math.max(0.2, 1 - p * 0.65));
-      }
-
-      rafRef.current = requestAnimationFrame(tick);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    rafRef.current = requestAnimationFrame(tick);
-
-    // Safety: never leave hero text stuck at opacity 0
-    const safety = window.setTimeout(() => {
-      if (entrance.current < 0.85) forceContentVisible();
-    }, 700);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(rafRef.current);
-      window.clearTimeout(safety);
-    };
-  }, []);
   return (
-    <section className="hero-parallax relative h-[calc(100svh-4.25rem)] min-h-[28rem] overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-0 bg-[#f4faf8]"
-        aria-hidden
-      />
+    <section className="bg-white pb-8 pt-4 sm:pt-6 border-b border-slate-200">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8">
+        {/* Light Blue Promo Hero Banner Carousel */}
+        <div className="relative overflow-hidden rounded-2xl border border-sky-100 bg-gradient-to-r shadow-xs transition-all duration-500">
+          <div className={`p-6 sm:p-10 md:p-12 bg-gradient-to-r ${slide.bgGradient}`}>
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="rounded-full bg-sky-100 px-2.5 py-1 text-[11px] font-black uppercase tracking-wider text-sky-700">
+                  {slide.tag}
+                </span>
+                <span className="rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-slate-700 shadow-2xs">
+                  {slide.badge}
+                </span>
+              </div>
 
-      <div
-        ref={farRef}
-        className="pointer-events-none absolute inset-[-25%] will-change-transform"
-        style={{
-          transform: "translate3d(0, 0, 0) scale(1.12)",
-          opacity: 0.35,
-          background:
-            "radial-gradient(55% 45% at 50% 42%, rgba(15,107,99,0.16) 0%, rgba(15,107,99,0.06) 42%, transparent 68%)",
-        }}
-        aria-hidden
-      />
+              <h1 className="font-display text-2xl font-black leading-tight text-slate-900 sm:text-3xl md:text-4xl">
+                {slide.title}
+              </h1>
 
-      <div
-        ref={midRef}
-        className="pointer-events-none absolute inset-[-15%] will-change-transform"
-        style={{
-          transform: "translate3d(0, 0, 0)",
-          opacity: 0.35,
-          background:
-            "radial-gradient(50% 40% at 18% 70%, rgba(110,186,198,0.18), transparent 60%), radial-gradient(45% 35% at 88% 22%, rgba(26,95,122,0.1), transparent 55%)",
-        }}
-        aria-hidden
-      />
+              <p className="mt-3 text-sm text-slate-600 sm:text-base leading-relaxed">
+                {slide.desc}
+              </p>
 
-      <div
-        ref={nearRef}
-        className="pointer-events-none absolute inset-[-10%] will-change-transform"
-        style={{
-          transform: "translate3d(0, 0, 0)",
-          opacity: 0,
-          background:
-            "linear-gradient(125deg, transparent 30%, rgba(255,255,255,0.55) 48%, transparent 66%)",
-        }}
-        aria-hidden
-      />
-
-      <div
-        ref={gridRef}
-        className="hero-parallax-grid pointer-events-none absolute inset-[-20%] will-change-transform"
-        style={{ transform: "translate3d(0, 0, 0)", opacity: 0 }}
-        aria-hidden
-      />
-
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 30%, rgba(238,244,242,0.55) 100%), linear-gradient(180deg, rgba(244,250,248,0.2) 0%, transparent 40%, rgba(238,244,242,0.65) 100%)",
-        }}
-        aria-hidden
-      />
-
-      <div
-        ref={contentRef}
-        className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-5 pb-20 text-center will-change-transform md:px-8"
-        style={{ transform: "translate3d(0, 0, 0)", opacity: 0 }}
-      >
-        {/* Same lockup as header — larger; Vitalwave revolves + drifts on scroll */}
-        <h1
-          className={`hero-reveal hero-reveal--title flex flex-col items-center gap-3 [perspective:1100px] sm:flex-row sm:items-center sm:gap-4 ${
-            visible ? "is-visible" : ""
-          }`}
-        >
-          <span className="inline-flex items-center gap-3 sm:gap-4">
-            <span
-              className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-xl shadow-emerald-600/30 ring-4 ring-emerald-400/25 sm:h-20 sm:w-20"
-              aria-hidden
-            >
-              <svg viewBox="0 0 24 24" className="h-9 w-9 text-white sm:h-11 sm:w-11" fill="none">
-                <path d="M12 4v16M4 12h16" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
-                <circle cx="12" cy="12" r="2.2" fill="#d1fae5" />
-              </svg>
-            </span>
-            <span
-              ref={brandRef}
-              className="inline-block origin-center font-display text-[clamp(3.75rem,14vw,7.5rem)] font-bold leading-[0.9] tracking-[-0.035em] text-ink will-change-transform"
-              style={{ transformStyle: "preserve-3d" }}
-            >
-              LIFE CURE
-              <span
-                className="brand-live-dot !bg-emerald-500"
-                title="Active"
-                aria-label="Active"
-                role="img"
-              />
-            </span>
-          </span>
-          <span
-            ref={pharmaRef}
-            className="inline-block text-[0.8rem] font-bold uppercase tracking-[0.24em] text-emerald-700 will-change-transform sm:text-[0.95rem] md:text-[1.05rem]"
-          >
-            Healthcare Solutions
-          </span>
-        </h1>
-
-        {reviewCount > 0 && (
-          <Link
-            href="/reviews"
-            className={`hero-reveal hero-reveal--sub mt-5 inline-flex items-center gap-2 text-sm transition hover:opacity-90 ${
-              visible ? "is-visible" : ""
-            }`}
-            style={{ transitionDelay: "160ms", color: "#9a6a10" }}
-            aria-label={`${reviewAverage.toFixed(1)} out of 5 from ${reviewCount} partner reviews`}
-          >
-            <span className="inline-flex items-center gap-0.5 text-amber-500" aria-hidden>
-              {Array.from({ length: 5 }, (_, i) => (
-                <svg
-                  key={i}
-                  className="h-3.5 w-3.5"
-                  viewBox="0 0 20 20"
-                  fill={i < Math.round(reviewAverage) ? "currentColor" : "none"}
-                  stroke="currentColor"
-                  strokeWidth={i < Math.round(reviewAverage) ? 0 : 1.4}
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <Link
+                  href={slide.ctaHref}
+                  className="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-sky-700 active:scale-95"
                 >
-                  <path d="M10 2.5l2.2 4.5 5 .7-3.6 3.5.9 5L10 13.8 5.5 16.2l.9-5L2.8 7.7l5-.7L10 2.5z" />
-                </svg>
-              ))}
-            </span>
-            <span className="font-semibold tabular-nums">
-              {reviewAverage.toFixed(1)}
-            </span>
-            <span className="text-ink-soft/55">
-              · {reviewCount} partner reviews
-            </span>
-          </Link>
-        )}
+                  <span>{slide.ctaText}</span>
+                  <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </Link>
 
-        <p
-          className={`hero-reveal hero-reveal--sub mt-6 max-w-2xl text-lg font-medium leading-snug tracking-[-0.01em] text-ink md:mt-8 md:text-2xl text-balance ${
-            visible ? "is-visible" : ""
-          }`}
-          style={{ transitionDelay: "220ms" }}
-        >
-          Wholesale &amp; export medicines for partners worldwide.
-        </p>
+                <a
+                  href={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
+                    ? `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Faith Health Care, please send your wholesale price list.")}`
+                    : `https://wa.me/917020096898?text=${encodeURIComponent("Hello Faith Health Care, please send your wholesale price list.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-600/30 bg-emerald-50 px-5 py-3 text-sm font-bold text-emerald-800 transition hover:bg-emerald-100"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-emerald-600">
+                    <path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.92.52 3.72 1.43 5.28L2 22l5.05-1.52a9.9 9.9 0 004.99 1.34h.01c5.46 0 9.89-4.4 9.89-9.83S17.5 2 12.04 2zm5.75 13.9c-.24.67-1.4 1.23-1.93 1.31-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.26-4.79-4.2-4.93-4.4-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.56-.35.75-.35h.54c.17 0 .4-.06.62.48.24.58.8 2 .87 2.14.07.14.12.3.02.49-.1.19-.14.3-.28.47-.14.16-.3.36-.43.49-.14.14-.29.29-.12.56.17.28.75 1.23 1.61 2 .97.87 1.97 1.23 2.25 1.37.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.19-.28.37-.23.62-.14.26.1 1.63.77 1.91.91.28.14.47.21.54.32.07.12.07.67-.17 1.34z" />
+                  </svg>
+                  <span>1-Tap WhatsApp Quote</span>
+                </a>
+              </div>
+            </div>
+          </div>
 
-        <p
-          className={`hero-reveal hero-reveal--sub mt-4 max-w-xl text-sm leading-relaxed text-ink-soft/80 md:text-base ${
-            visible ? "is-visible" : ""
-          }`}
-          style={{ transitionDelay: "360ms" }}
-        >
-          {totalMedicines > 0
-            ? `Browse ${totalMedicines}+ tablets, capsules, injections, and specialty products from Nagpur — then enquire on WhatsApp or Telegram.`
-            : "Browse tablets, capsules, injections, and specialty products from Nagpur — then enquire on WhatsApp or Telegram."}
-        </p>
+          {/* Slide Indicator Dots */}
+          <div className="absolute bottom-3 right-5 flex items-center gap-1.5">
+            {PROMO_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setActiveSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all ${
+                  activeSlide === i ? "w-6 bg-sky-600" : "w-2 bg-slate-300 hover:bg-slate-400"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
 
+        {/* 4-Tile Quick Service Grid */}
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+          {QUICK_SERVICE_TILES.map((tile) => {
+            const content = (
+              <div className="flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-2xs transition hover:border-sky-400 hover:shadow-md group">
+                <div className="flex items-start justify-between gap-2">
+                  <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${tile.bg} transition group-hover:scale-105`}>
+                    {tile.icon}
+                  </div>
+                  <span className="rounded-md bg-sky-50 px-1.5 py-0.5 text-[10px] font-bold text-sky-700">
+                    {tile.badge}
+                  </span>
+                </div>
+                <div className="mt-3">
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-sky-600">
+                    {tile.title}
+                  </h3>
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    {tile.desc}
+                  </p>
+                </div>
+              </div>
+            );
+
+            return tile.isExternal ? (
+              <a
+                key={tile.title}
+                href={tile.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {content}
+              </a>
+            ) : (
+              <Link key={tile.title} href={tile.href}>
+                {content}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Fast Search & 1-Tap Category Filters */}
         {medicines && medicines.length > 0 && (
-          <div
-            className={`hero-reveal hero-reveal--sub w-full max-w-3xl ${
-              visible ? "is-visible" : ""
-            }`}
-            style={{ transitionDelay: "420ms" }}
-          >
+          <div className="mt-6">
             <ExpressSearchHero medicines={medicines} />
           </div>
         )}
-
-        <div
-          className={`hero-reveal hero-reveal--sub mt-9 flex flex-wrap items-center justify-center gap-3 md:mt-11 ${
-            visible ? "is-visible" : ""
-          }`}
-          style={{ transitionDelay: "500ms" }}
-        >
-          <Link
-            href="/catalog"
-            className="inline-flex items-center rounded-full bg-teal px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-teal-deep"
-          >
-            Browse catalog
-          </Link>
-          <Link
-            href="/about"
-            className="inline-flex items-center rounded-full border border-ink/20 bg-white/70 px-7 py-3.5 text-sm font-medium text-ink transition hover:border-teal/40 hover:text-teal"
-          >
-            About Life Cure
-          </Link>
-        </div>
-
-        <nav
-          className={`hero-reveal hero-reveal--sub mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-ink-soft/70 md:mt-10 ${
-            visible ? "is-visible" : ""
-          }`}
-          style={{ transitionDelay: "640ms" }}
-          aria-label="Quick links"
-        >
-          <Link href="#categories" className="transition hover:text-teal">
-            Categories
-          </Link>
-          <span className="text-ink-soft/30" aria-hidden>
-            ·
-          </span>
-          <Link href="/catalog" className="transition hover:text-teal">
-            Full catalog
-          </Link>
-          <span className="text-ink-soft/30" aria-hidden>
-            ·
-          </span>
-          <Link href="/reviews" className="transition hover:text-teal">
-            Partner reviews
-          </Link>
-          <span className="text-ink-soft/30" aria-hidden>
-            ·
-          </span>
-          <Link href="/about" className="transition hover:text-teal">
-            Export &amp; wholesale
-          </Link>
-        </nav>
-      </div>
-
-      <div
-        className={`pointer-events-none fixed inset-x-0 bottom-5 z-30 flex justify-center transition-opacity duration-300 sm:bottom-7 ${
-          cueShown ? "opacity-100" : "opacity-0"
-        }`}
-        aria-hidden={!cueShown}
-      >
-        <a
-          href="#categories"
-          className={`hero-scroll pointer-events-auto ${
-            cueShown ? "" : "pointer-events-none"
-          }`}
-          aria-label="Scroll down"
-          tabIndex={cueShown ? 0 : -1}
-        >
-          <span>Scroll</span>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path
-              d="M6 10l6 6 6-6"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </a>
       </div>
     </section>
   );

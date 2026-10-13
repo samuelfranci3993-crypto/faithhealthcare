@@ -93,7 +93,7 @@ export default function ReviewForm({
       setMedicineSlug("");
       setRating(5);
       router.refresh();
-      window.dispatchEvent(new Event("lifecure:reviews-updated"));
+      window.dispatchEvent(new Event("faithhealthcare:reviews-updated"));
       onSubmitted?.();
     } catch {
       setError("Network error — please try again.");

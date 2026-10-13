@@ -43,7 +43,7 @@ type UserContextType = {
   clearPendingCartAction: () => void;
 };
 
-const STORAGE_KEY = "lifecure_customer_user_v1";
+const STORAGE_KEY = "faithhealthcare_customer_user_v1";
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 

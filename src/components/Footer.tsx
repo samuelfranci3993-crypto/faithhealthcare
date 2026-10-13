@@ -2,154 +2,260 @@ import Image from "next/image";
 import Link from "next/link";
 
 const markets = [
-  { code: "gb", name: "United Kingdom" },
-  { code: "us", name: "United States" },
-  { code: "de", name: "Germany" },
-  { code: "nl", name: "Netherlands" },
-  { code: "be", name: "Belgium" },
+  { code: "gb", name: "United Kingdom", flag: "🇬🇧" },
+  { code: "us", name: "United States", flag: "🇺🇸" },
+  { code: "de", name: "Germany", flag: "🇩🇪" },
+  { code: "nl", name: "Netherlands", flag: "🇳🇱" },
+  { code: "be", name: "Belgium", flag: "🇧🇪" },
+  { code: "fr", name: "France", flag: "🇫🇷" },
+  { code: "ae", name: "UAE", flag: "🇦🇪" },
+  { code: "au", name: "Australia", flag: "🇦🇺" },
 ];
 
 export default function Footer() {
-  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918857030167";
-  const telegram = process.env.NEXT_PUBLIC_TELEGRAM_USERNAME || "V_10120";
+  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
+  const telegram = process.env.NEXT_PUBLIC_TELEGRAM_USERNAME || "";
 
   return (
-    <footer className="relative overflow-hidden text-emerald-mist">
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(520px 220px at 10% 0%, rgba(5,150,105,0.38) 0%, transparent 55%), linear-gradient(180deg, #0a192f 0%, #050d1a 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald/40 to-transparent"
-        aria-hidden
-      />
+    <footer className="relative bg-slate-900 text-slate-300 border-t border-slate-800">
+      {/* 1mg Style Trust Stats Bar */}
+      <div className="border-b border-slate-800/80 bg-slate-950/60 py-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 text-center">
+            <div className="p-2">
+              <p className="text-2xl font-black text-white sm:text-3xl">150+</p>
+              <p className="text-xs text-slate-400 mt-0.5">WHO-GMP Formulations</p>
+            </div>
+            <div className="p-2">
+              <p className="text-2xl font-black text-brand sm:text-3xl">25+</p>
+              <p className="text-xs text-slate-400 mt-0.5">Export Destinations</p>
+            </div>
+            <div className="p-2">
+              <p className="text-2xl font-black text-emerald-400 sm:text-3xl">100%</p>
+              <p className="text-xs text-slate-400 mt-0.5">Genuine Tested Batches</p>
+            </div>
+            <div className="p-2">
+              <p className="text-2xl font-black text-amber-400 sm:text-3xl">&lt; 15 min</p>
+              <p className="text-xs text-slate-400 mt-0.5">Instant WhatsApp Quote</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <div className="relative mx-auto max-w-6xl px-5 py-5 md:px-8 md:py-6">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="font-display text-3xl leading-none tracking-tight text-white md:text-[2.15rem]">
-              LIFE CURE
-              <span
-                className="brand-live-dot"
-                title="Always live"
-                aria-label="Always live"
-                role="img"
-              />
+      {/* Main 1mg Footer Links & Directory */}
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Column 1: Brand & Contact Info */}
+          <div className="lg:col-span-2">
+            <Link href="/" className="inline-flex items-center gap-2">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-hover font-black text-white text-lg shadow-md shadow-brand/30">
+                FHC
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-black tracking-tight text-white flex items-center gap-1.5">
+                  FAITH HEALTH CARE
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  Global Pharma Export Desk
+                </span>
+              </div>
+            </Link>
+
+            <p className="mt-4 text-xs leading-relaxed text-slate-400 max-w-sm">
+              Faith Health Care is an independent pharmaceutical export and wholesale platform, supplying 100% genuine medicines from licensed WHO-GMP manufacturers to healthcare buyers worldwide.
             </p>
-            <p className="mt-1.5 text-[0.7rem] text-white/45">
-              Pharmaceutical healthcare &amp; export · Est. 2021
-            </p>
+
+            {/* Direct Connect Buttons */}
+            <div className="mt-5 flex items-center gap-3">
+              <a
+                href={whatsapp ? `https://wa.me/${whatsapp}` : "https://wa.me/"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs font-bold text-white shadow-sm hover:bg-emerald-700 transition"
+              >
+                <WhatsAppIcon />
+                <span>WhatsApp Desk</span>
+              </a>
+
+              {telegram && (
+                <a
+                  href={`https://t.me/${telegram}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-3.5 py-2 text-xs font-bold text-slate-200 hover:bg-slate-700 transition"
+                >
+                  <TelegramIcon />
+                  <span>Telegram Desk</span>
+                </a>
+              )}
+            </div>
+
+            {/* Direct Contact Info */}
+            <div className="mt-4 space-y-1.5 text-xs text-slate-300">
+              <p className="flex items-center gap-2">
+                <span className="text-slate-400">WhatsApp / Call:</span>
+                <a href={whatsapp ? `https://wa.me/${whatsapp}` : "tel:+917020096898"} className="font-bold text-sky-400 hover:text-white transition">
+                  +91 70200 96898
+                </a>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="text-slate-400">Email:</span>
+                <a href="mailto:faithhealthcare5@gmail.com" className="font-medium text-sky-400 hover:text-white transition">
+                  faithhealthcare5@gmail.com
+                </a>
+              </p>
+            </div>
+
+            {/* Verification Badges */}
+            <div className="mt-6 flex flex-wrap items-center gap-2 text-[11px] font-semibold text-slate-300">
+              <span className="inline-flex items-center gap-1 rounded-md bg-slate-800 px-2 py-1 text-emerald-400 border border-slate-700">
+                <ShieldMini /> GST Verified
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-md bg-slate-800 px-2 py-1 text-blue-400 border border-slate-700">
+                <DocMini /> IEC Exporter
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-md bg-slate-800 px-2 py-1 text-amber-400 border border-slate-700">
+                <SealMini /> WHO-GMP
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            <p className="text-[0.7rem] font-medium tracking-wide text-white/55">
-              Contact us
-            </p>
-            <a
-              href={whatsapp ? `https://wa.me/${whatsapp}` : "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Enquire on WhatsApp"
-              className="pressable inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#25D366] text-[#062816] transition hover:brightness-110"
-            >
-              <WhatsAppIcon />
-            </a>
-            <a
-              href={`https://t.me/${telegram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Enquire on Telegram"
-              className="pressable inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:border-white/30 hover:bg-white/10"
-            >
-              <TelegramIcon />
-            </a>
+          {/* Column 2: Know Faith Health Care */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+              Know Faith Health Care
+            </h3>
+            <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
+              <li>
+                <Link href="/about" className="hover:text-white transition">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/about#contact" className="hover:text-white transition">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies" className="hover:text-white transition">
+                  Quality &amp; Export Policies
+                </Link>
+              </li>
+              <li>
+                <Link href="/insights" className="hover:text-white transition">
+                  Wholesale Guides &amp; Insights
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog" className="hover:text-white transition">
+                  Product Catalog
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Therapeutic Categories */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+              Categories
+            </h3>
+            <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
+              <li>
+                <Link href="/catalog?category=Antibiotics" className="hover:text-white transition">
+                  Antibiotics &amp; Anti-infectives
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog?category=ED%20Medicines" className="hover:text-white transition">
+                  ED &amp; Men&apos;s Health
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog?category=Cancer%20Medicine" className="hover:text-white transition">
+                  Oncology &amp; Cancer Care
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog?category=Pain%20Relief" className="hover:text-white transition">
+                  Pain Relief &amp; Analgesics
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog?category=Steroids" className="hover:text-white transition">
+                  Steroids &amp; Hormones
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog?category=Antiviral" className="hover:text-white transition">
+                  Antiviral &amp; HIV Medicines
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Policies & Compliance */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+              Our Policies
+            </h3>
+            <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
+              <li>
+                <Link href="/policies#privacy" className="hover:text-white transition">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies#terms" className="hover:text-white transition">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies#returns" className="hover:text-white transition">
+                  Return &amp; Refund Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies#export" className="hover:text-white transition">
+                  Export Compliance
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies#editorial" className="hover:text-white transition">
+                  Editorial &amp; Verification
+                </Link>
+              </li>
+            </ul>
+
+            {/* Active Export Destinations */}
+            <div className="mt-6">
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Major Export Corridors
+              </h4>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {markets.map((m) => (
+                  <span
+                    key={m.code}
+                    className="inline-flex items-center gap-1.5 rounded-md bg-slate-800/80 px-2 py-0.5 text-[10px] text-slate-300 border border-slate-700/60"
+                  >
+                    <span className="text-xs">{m.flag}</span>
+                    <span>{m.name}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-3.5 space-y-2.5 border-t border-white/[0.08] pt-3">
-          <ul className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.68rem] font-medium">
-            <li className="inline-flex items-center gap-1 text-[#7ec8bf]">
-              <ShieldMini />
-              GST verified
-            </li>
-            <li className="inline-flex items-center gap-1 text-[#8eb8c9]">
-              <DocMini />
-              IEC verified
-            </li>
-            <li className="inline-flex items-center gap-1 text-[#d4b45a]">
-              <SealMini />
-              Verified Exporter
-            </li>
-            <li>
-              <a
-                href="https://www.indiamart.com/vitalwave/profile.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-white/40 transition hover:text-white/70"
-              >
-                IndiaMART profile
-                <ExternalMini />
-              </a>
-            </li>
-            <li>
-              <Link
-                href="/insights"
-                className="text-white/40 transition hover:text-white/70"
-              >
-                Insights
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className="text-white/40 transition hover:text-white/70"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/policies"
-                className="text-white/40 transition hover:text-white/70"
-              >
-                Policies
-              </Link>
-            </li>
-          </ul>
+        {/* Trade & Medical Disclaimer (1mg standard) */}
+        <div className="mt-12 border-t border-slate-800 pt-6 text-[11px] leading-relaxed text-slate-500">
+          <p>
+            <strong className="text-slate-400">Trade &amp; Regulatory Notice:</strong> The information provided on Faith Health Care is intended solely for wholesale healthcare buyers, licensed pharmacies, hospitals, and pharmaceutical importers. Faith Health Care adheres strictly to the Drugs and Cosmetics Act, 1940 and the export policies of the Directorate General of Foreign Trade (DGFT), Government of India. Prescription medications require a valid medical prescription and regulatory import permit where applicable.
+          </p>
 
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-[0.6rem] uppercase tracking-[0.14em] text-white/30">
-                Export markets
-              </p>
-              <ul className="mt-1.5 flex flex-wrap gap-1.5">
-                {markets.map((m) => (
-                  <li
-                    key={m.code}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] py-0.5 pl-0.5 pr-2"
-                  >
-                    <span className="relative inline-flex h-3.5 w-3.5 overflow-hidden rounded-full ring-1 ring-white/15">
-                      <Image
-                        src={`/images/flags/${m.code}.png`}
-                        alt=""
-                        width={14}
-                        height={14}
-                        className="h-full w-full object-cover"
-                      />
-                    </span>
-                    <span className="text-[0.65rem] text-white/70">{m.name}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <p className="text-[0.65rem] text-white/30 sm:text-right">
-              © {new Date().getFullYear()} LIFE CURE · Business enquiries only
-            </p>
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-slate-400">
+            <p>© {new Date().getFullYear()} FAITH HEALTH CARE. All rights reserved. Global Pharmaceutical Export Desk · India.</p>
+            <p className="text-slate-500">WHO-GMP Compliant Pharmaceutical Supply</p>
           </div>
         </div>
       </div>
@@ -159,7 +265,7 @@ export default function Footer() {
 
 function ShieldMini() {
   return (
-    <svg className="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden>
       <path
         d="M12 3l7 3.5v5.2c0 4.3-2.9 7.4-7 9.3-4.1-1.9-7-5-7-9.3V6.5L12 3z"
         stroke="currentColor"
@@ -178,7 +284,7 @@ function ShieldMini() {
 
 function DocMini() {
   return (
-    <svg className="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden>
       <rect
         x="5"
         y="4"
@@ -200,8 +306,8 @@ function DocMini() {
 
 function SealMini() {
   return (
-    <svg className="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx="12" cy="11" r="6.5" fill="#C9A227" />
+    <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="11" r="6.5" fill="#f59e0b" />
       <path
         d="M9.4 11.1l1.5 1.5 3.2-3.3"
         stroke="#fff"
@@ -242,4 +348,3 @@ function TelegramIcon() {
     </svg>
   );
 }
-

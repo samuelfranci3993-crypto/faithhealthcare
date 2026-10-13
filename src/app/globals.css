@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --vw-ink: #0a192f;
-  --vw-teal: #059669;
-  --vw-mist: #ecfdf5;
-  --vw-sand: #f8fafc;
+  --vw-ink: #0f172a;
+  --vw-teal: #0284c7;
+  --vw-mist: #e0f2fe;
+  --vw-sand: #f0f9ff;
   --vw-line: #e2e8f0;
-  --brand-navy: #0a192f;
-  --brand-emerald: #059669;
-  --brand-emerald-glow: #10b981;
+  --brand-coral: #0284c7;
+  --brand-coral-hover: #0369a1;
+  --brand-peach: #f0f9ff;
 }
 
 html {
@@ -41,15 +41,12 @@ html.lenis body {
 
 body {
   color: var(--vw-ink);
-  background:
-    radial-gradient(1200px 600px at 10% -10%, #d1fae5 0%, transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, #e0e7ff 0%, transparent 50%),
-    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  background: #f8f9fa;
   min-height: 100%;
 }
 
 ::selection {
-  background: rgba(15, 107, 99, 0.18);
+  background: rgba(2, 132, 199, 0.18);
 }
 
 /* Fast tactile press for buttons & button-style links */
@@ -113,7 +110,7 @@ body {
   }
 }
 
-/* Deloitte-style live mark after VITALWAVE — small, quiet, baseline-aligned */
+/* Deloitte-style live mark after FAITH HEALTH CARE — small, quiet, baseline-aligned */
 .brand-live-dot {
   display: inline-block;
   width: 0.11em;
@@ -220,60 +217,16 @@ body {
 }
 
 /*
- * Cascade entrance only:
- * hidden → rise + fade in, then stay fully visible on screen.
- * --scroll-fade stays at 1 after reveal (no mid-viewport wash).
- */
-main section:not(.hero-parallax):not([data-scroll-skip]):not(.page-cascade--in),
-main header[data-scroll]:not(.page-cascade--in),
-main [data-scroll]:not([data-scroll-skip]):not(.page-cascade--in) {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-}
-
 /*
- * Nested <section> inside a cascade wrapper must not stay hidden —
- * only the outer cascade target is toggled by ScrollMotion.
+ * Instant load & smooth entrance:
+ * Content is fully visible immediately (no blank/delayed screens).
  */
-main [data-scroll] section:not([data-scroll]),
-main .page-cascade--in > section:not([data-scroll]) {
-  opacity: 1 !important;
-  filter: none !important;
-  transform: none !important;
-  transition: none !important;
-  will-change: auto !important;
-}
-
-main section:not(.hero-parallax):not([data-scroll-skip]),
+main section,
 main header[data-scroll],
-main [data-scroll]:not([data-scroll-skip]) {
-  transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--cascade-delay, 0ms);
-  will-change: opacity, transform;
-}
-
-main section.page-cascade--in:not(.hero-parallax):not([data-scroll-skip]),
-main header[data-scroll].page-cascade--in,
-main [data-scroll].page-cascade--in:not([data-scroll-skip]) {
+main [data-scroll] {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--cascade-delay, 0ms);
-}
-
-/* After entrance: no continuous scroll-linked fade */
-main section.page-cascade--live:not(.hero-parallax):not([data-scroll-skip]),
-main header[data-scroll].page-cascade--live,
-main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
-  transition:
-    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: 0ms;
-  will-change: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -300,7 +253,7 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   border: none;
   background: transparent;
   box-shadow: none;
-  color: rgba(15, 107, 99, 0.72);
+  color: rgba(2, 132, 199, 0.72);
   text-decoration: none;
   opacity: 1;
   animation: hero-scroll-bounce 1.55s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
@@ -350,7 +303,7 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   border: none;
   background: transparent;
   box-shadow: none;
-  color: rgba(15, 107, 99, 0.72);
+  color: rgba(2, 132, 199, 0.72);
   cursor: pointer;
   transition: opacity 0.3s ease, color 0.2s ease;
 }
@@ -398,8 +351,8 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
 
 /* —— Category catalog cards (home) —— */
 .cat-card {
-  --cat-accent: #0f6b63;
-  --cat-wash: rgba(15, 107, 99, 0.08);
+  --cat-accent: #0284c7;
+  --cat-wash: rgba(2, 132, 199, 0.08);
   position: relative;
   display: block;
   overflow: hidden;
@@ -610,7 +563,7 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   position: absolute;
   inset: 0 auto 0 0;
   width: 3px;
-  background: var(--insight-accent, #0f6b63);
+  background: var(--insight-accent, #0284c7);
   opacity: 0.85;
 }
 
@@ -644,8 +597,8 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: var(--insight-wash, rgba(15, 107, 99, 0.12));
-  color: var(--insight-accent, #0f6b63);
+  background: var(--insight-wash, rgba(2, 132, 199, 0.12));
+  color: var(--insight-accent, #0284c7);
 }
 
 .insight-symbol-wrap {
@@ -663,8 +616,8 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   align-items: center;
   justify-content: center;
   border-radius: 0.55rem;
-  background: var(--insight-wash, rgba(15, 107, 99, 0.12));
-  color: var(--insight-accent, #0f6b63);
+  background: var(--insight-wash, rgba(2, 132, 199, 0.12));
+  color: var(--insight-accent, #0284c7);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--insight-accent) 14%, transparent);
 }
 
@@ -698,7 +651,7 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
 }
 
 .insight-card:hover .insight-title {
-  color: var(--insight-accent, #0f6b63);
+  color: var(--insight-accent, #0284c7);
 }
 
 .insight-excerpt {
@@ -719,7 +672,7 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   justify-content: space-between;
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--insight-accent, #0f6b63);
+  color: var(--insight-accent, #0284c7);
 }
 
 .insight-catalog-link {
@@ -736,8 +689,8 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
 }
 
 .insight-catalog-link:hover {
-  color: var(--insight-accent, #0f6b63);
-  background: var(--insight-wash, rgba(15, 107, 99, 0.12));
+  color: var(--insight-accent, #0284c7);
+  background: var(--insight-wash, rgba(2, 132, 199, 0.12));
 }
 
 /* Compact listing cards — 3 per row, fixed height */
@@ -796,7 +749,7 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   gap: 0.3rem;
   font-size: 0.65rem;
   font-weight: 600;
-  color: var(--insight-accent, #0f6b63);
+  color: var(--insight-accent, #0284c7);
 }
 
 .insight-card--compact:hover {
@@ -820,7 +773,7 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   inset: 0 0 auto;
   height: 22rem;
   background:
-    radial-gradient(70% 80% at 8% 0%, rgba(15, 107, 99, 0.12), transparent 60%),
+    radial-gradient(70% 80% at 8% 0%, rgba(2, 132, 199, 0.12), transparent 60%),
     radial-gradient(55% 70% at 92% 10%, rgba(26, 95, 122, 0.1), transparent 55%);
   z-index: -1;
 }
@@ -830,8 +783,8 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 999px;
-  background: #0f6b63;
-  box-shadow: 0 0 0 4px rgba(15, 107, 99, 0.14);
+  background: #0284c7;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.14);
 }
 
 .insights-toolbar {
@@ -889,8 +842,8 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: var(--filter-wash, rgba(15, 107, 99, 0.12));
-  color: var(--filter-accent, #0f6b63);
+  background: var(--filter-wash, rgba(2, 132, 199, 0.12));
+  color: var(--filter-accent, #0284c7);
 }
 
 .insights-filter:hover {
@@ -900,7 +853,7 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
 
 .insights-filter.is-active {
   border-color: transparent;
-  background: var(--filter-accent, #0f6b63);
+  background: var(--filter-accent, #0284c7);
   color: white;
 }
 
@@ -1151,12 +1104,12 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
 
 @media (min-width: 1024px) {
   .featured-track {
-    gap: 1.35rem;
+    gap: 1.25rem;
   }
 
-  /* Exactly 3 cards in view */
+  /* Exactly 4 cards in view */
   .featured-slide {
-    flex-basis: calc((100% - 2.7rem) / 3);
+    flex-basis: calc((100% - 3.75rem) / 4);
   }
 }
 
@@ -1207,51 +1160,34 @@ main [data-scroll].page-cascade--live:not([data-scroll-skip]) {
 
 .med-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  column-gap: 1.75rem;
-  row-gap: 3.25rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 480px) {
   .med-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2.5rem;
-    row-gap: 4rem;
+    gap: 1rem;
   }
+}
 
-  .med-grid .med-card:nth-child(4n + 2) {
-    margin-top: 1.75rem;
-  }
-
-  .med-grid .med-card:nth-child(4n + 3) {
-    margin-top: 0.65rem;
+@media (min-width: 768px) {
+  .med-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
   }
 }
 
 @media (min-width: 1024px) {
   .med-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 2.75rem;
-    row-gap: 4.75rem;
-  }
-
-  .med-grid .med-card:nth-child(4n + 2),
-  .med-grid .med-card:nth-child(4n + 3) {
-    margin-top: 0;
-  }
-
-  .med-grid .med-card:nth-child(3n + 2) {
-    margin-top: 2.25rem;
-  }
-
-  .med-grid .med-card:nth-child(3n) {
-    margin-top: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
   }
 }
 
 .med-card {
-  --med-accent: #0f6b63;
-  --med-wash: rgba(15, 107, 99, 0.12);
+  --med-accent: #0284c7;
+  --med-wash: rgba(2, 132, 199, 0.12);
   --med-mist: #e8f4f1;
   position: relative;
   display: flex;

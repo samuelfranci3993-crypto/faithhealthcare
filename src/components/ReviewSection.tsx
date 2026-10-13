@@ -30,20 +30,20 @@ export default function ReviewSection({
     },
     {
       label: `${count} reviews`,
-      accent: "#0f6b63",
-      wash: "rgba(15, 107, 99, 0.12)",
+      accent: "#0284c7",
+      wash: "rgba(2, 132, 199, 0.12)",
       icon: <ChatIcon />,
     },
     {
       label: "Medicine-tagged",
-      accent: "#1a5f7a",
-      wash: "rgba(26, 95, 122, 0.12)",
+      accent: "#0369a1",
+      wash: "rgba(3, 105, 161, 0.12)",
       icon: <CapsuleIcon />,
     },
     {
       label: "Live on site",
-      accent: "#3d6b5a",
-      wash: "rgba(61, 107, 90, 0.14)",
+      accent: "#0284c7",
+      wash: "rgba(2, 132, 199, 0.12)",
       icon: <BoltIcon />,
     },
   ];
@@ -51,13 +51,13 @@ export default function ReviewSection({
   return (
     <section
       data-scroll
-      className="relative overflow-hidden rounded-2xl border border-line/80 bg-white/65"
+      className="relative overflow-hidden rounded-2xl border border-sky-100 bg-white/80"
     >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(90% 80% at 0% 0%, rgba(15,107,99,0.1), transparent 55%), radial-gradient(70% 60% at 100% 0%, rgba(196,138,26,0.1), transparent 50%)",
+            "radial-gradient(90% 80% at 0% 0%, rgba(2,132,199,0.08), transparent 55%), radial-gradient(70% 60% at 100% 0%, rgba(14,165,233,0.08), transparent 50%)",
         }}
         aria-hidden
       />

@@ -7,7 +7,7 @@ import { getAllReviews, getReviewStats } from "@/lib/reviews-store";
 export const metadata: Metadata = {
   title: "Reviews",
   description:
-    "Customer reviews for Life Cure — wholesale and export pharmaceutical partner.",
+    "Customer reviews for Faith Health Care — wholesale and export pharmaceutical partner.",
 };
 
 const PER_PAGE = 10;

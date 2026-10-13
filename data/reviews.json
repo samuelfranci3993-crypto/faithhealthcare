@@ -1,5 +1,29 @@
 [
   {
+    "id": "r-mv3m1cse-pd0d",
+    "name": "Wholesale Partner Test",
+    "rating": 5,
+    "title": "Excellent",
+    "body": "Excellent fast delivery and certified COA packaging. Highly recommended!",
+    "date": "2026-10-11",
+    "location": "London, UK",
+    "verified": false,
+    "medicineName": "Cipla Amoxicillin",
+    "medicineSlug": "cipla-amoxicillin"
+  },
+  {
+    "id": "r-mv3lmdvl-7a8e",
+    "name": "Test Pharmacist",
+    "rating": 5,
+    "title": "Excellent",
+    "body": "Excellent wholesale delivery and fast shipping documentation.",
+    "date": "2026-10-11",
+    "location": "London, UK",
+    "verified": false,
+    "medicineName": "Amoxicillin",
+    "medicineSlug": "amoxicillin"
+  },
+  {
     "id": "r-msrzbx44-bvei",
     "name": "John Fransis",
     "rating": 3,
@@ -100,7 +124,7 @@
     "name": "Isha Costa",
     "rating": 5,
     "title": "Excellent",
-    "body": "Reliable wholesaler from Nagpur. We have reordered twice already.",
+    "body": "Reliable pharmaceutical exporter from India. We have reordered twice already.",
     "date": "2025-12-19",
     "location": "Bangladesh",
     "verified": true,
@@ -520,7 +544,7 @@
     "name": "Omar Hassan",
     "rating": 5,
     "title": "Excellent",
-    "body": "Reliable wholesaler from Nagpur. We have reordered twice already.",
+    "body": "Reliable pharmaceutical exporter from India. We have reordered twice already.",
     "date": "2025-03-11",
     "location": "Sri Lanka",
     "verified": true,

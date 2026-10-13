@@ -18,7 +18,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
     title: medicine.name,
     description:
       medicine.description?.slice(0, 155) ||
-      `${medicine.name} — enquire with Life Cure for wholesale supply.`,
+      `${medicine.name} — enquire with Faith Health Care for wholesale supply.`,
   };
 }
 

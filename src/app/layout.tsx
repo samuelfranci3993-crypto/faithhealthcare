@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lora, Source_Sans_3 } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollMotion from "@/components/ScrollMotion";
@@ -11,13 +11,14 @@ import AuthModal from "@/components/AuthModal";
 import StickyQuickOrderBar from "@/components/StickyQuickOrderBar";
 import "./globals.css";
 
-const display = Lora({
+const display = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-display",
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
-const sans = Source_Sans_3({
+const sans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -25,12 +26,12 @@ const sans = Source_Sans_3({
 
 export const metadata: Metadata = {
   title: {
-    default: "Life Cure — Pharmaceutical & Healthcare Catalog",
-    template: "%s | Life Cure",
+    default: "Faith Health Care — Pharmaceutical & Healthcare Catalog",
+    template: "%s | Faith Health Care",
   },
   description:
-    "Life Cure supplies certified pharmaceutical tablets, capsules, injections, and specialty healthcare medicines for global wholesale and export.",
-  metadataBase: new URL("https://lifecure.vercel.app"),
+    "Faith Health Care supplies certified pharmaceutical tablets, capsules, injections, and specialty healthcare medicines for global wholesale and export.",
+  metadataBase: new URL("https://faithhealthcare.in"),
 };
 
 export default function RootLayout({

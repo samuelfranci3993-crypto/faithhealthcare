@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
+import Image from "next/image";
 
 export interface CartItem {
   id: string;
@@ -35,7 +36,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-const CART_STORAGE_KEY = "lifecure_cart_v1";
+const CART_STORAGE_KEY = "faithhealthcare_cart_v1";
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -134,15 +135,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
       {/* Global Animated Toast Notification */}
       {toast && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-teal-500/20 bg-emerald-950/90 px-4 py-3 text-white shadow-2xl backdrop-blur-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-2xl backdrop-blur-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
           {toast.itemImage ? (
-            <img
+            <Image
               src={toast.itemImage}
               alt=""
-              className="h-10 w-10 rounded-lg bg-white/10 object-contain p-1"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-lg bg-slate-50 object-contain p-1 border border-slate-100"
             />
           ) : (
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-500/20 text-teal-300">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand/10 text-brand">
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
                 <path
                   d="M5 13l4 4L19 7"
@@ -155,16 +158,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             </div>
           )}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-teal-300">
+            <p className="text-xs font-bold uppercase tracking-wider text-brand">
               Item Added to Cart
             </p>
-            <p className="line-clamp-1 text-sm font-medium text-slate-100">
+            <p className="line-clamp-1 text-sm font-semibold text-slate-800">
               {toast.message}
             </p>
           </div>
           <button
             onClick={() => setIsCartOpen(true)}
-            className="ml-2 rounded-lg bg-teal-500 px-3 py-1.5 text-xs font-bold text-slate-950 transition hover:bg-teal-400"
+            className="ml-2 rounded-xl bg-brand px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition hover:bg-hover active:scale-95"
           >
             View Cart
           </button>

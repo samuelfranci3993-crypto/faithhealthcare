@@ -6,7 +6,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "pharma-export-from-india-guide",
     title: "Pharmaceutical export from India: what wholesale partners should know",
     description:
-      "GST, IEC, documents, and how Life Cure handles export enquiries from Nagpur for international wholesale partners.",
+      "GST, IEC, documents, and how Faith Health Care handles export enquiries from India for international wholesale partners.",
     category: null,
     publishedAt: "2026-08-01",
     updatedAt: "2026-08-13",
@@ -22,7 +22,7 @@ export const INSIGHTS: InsightArticle[] = [
       {
         paragraphs: [
           "India is a major source of finished pharmaceutical formulations for wholesale and export partners. Buyers typically look for a registered supplier with clear documentation, responsive communication, and a catalog they can filter by therapeutic category and dosage form.",
-          "Life Cure is a Nagpur-based wholesaler, distributor, and exporter established in 2021. We supply tablets, capsules, injections, creams, and specialty medicines to domestic and international partners — with GST and IEC verification and trade terms shared upfront on enquiry.",
+          "Faith Health Care is an Indian wholesaler, distributor, and exporter established in 2021. We supply tablets, capsules, injections, creams, and specialty medicines to domestic and international partners — with GST and IEC verification and trade terms shared upfront on enquiry.",
         ],
       },
       {
@@ -57,7 +57,7 @@ export const INSIGHTS: InsightArticle[] = [
       {
         question: "What registration should an Indian exporter have?",
         answer:
-          "GST and IEC are baseline. Life Cure shares registration details on qualified wholesale enquiries.",
+          "GST and IEC are baseline. Faith Health Care shares registration details on qualified wholesale enquiries.",
       },
       {
         question: "How do I pay for export orders?",
@@ -75,7 +75,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "wholesale-antibiotics-supply",
     title: "Wholesale antibiotics supply for distributors and export partners",
     description:
-      "How to source antibiotic tablets and capsules in bulk from India — catalog categories, MOQ, and enquiry tips for Life Cure partners.",
+      "How to source antibiotic tablets and capsules in bulk from India — catalog categories, MOQ, and enquiry tips for Faith Health Care partners.",
     category: "Antibiotics",
     publishedAt: "2026-08-02",
     updatedAt: "2026-08-13",
@@ -90,7 +90,7 @@ export const INSIGHTS: InsightArticle[] = [
       {
         paragraphs: [
           "Antibiotic formulations remain a core line for pharmaceutical wholesalers and hospital procurement desks. Partners usually need a mix of tablets and capsules across common molecules, with clear labeling and batch traceability on request.",
-          "Life Cure lists antibiotics under our Antibiotics parent category. You can filter the catalog by dosage form — tablets, capsules, and other forms — then enquire on a line-item basis for export or domestic wholesale.",
+          "Faith Health Care lists antibiotics under our Antibiotics parent category. You can filter the catalog by dosage form — tablets, capsules, and other forms — then enquire on a line-item basis for export or domestic wholesale.",
         ],
       },
       {
@@ -136,7 +136,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "pain-killers-wholesale-export",
     title: "Pain killers wholesale: bulk tablets and capsules from India",
     description:
-      "Sourcing analgesic and pain-management medicines for wholesale — Life Cure catalog, MOQ, and export enquiry process.",
+      "Sourcing analgesic and pain-management medicines for wholesale — Faith Health Care catalog, MOQ, and export enquiry process.",
     category: "Pain Killers",
     publishedAt: "2026-08-03",
     updatedAt: "2026-08-13",
@@ -196,7 +196,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "anti-cancer-medicines-export",
     title: "Anti cancer medicines export: specialty pharma for international partners",
     description:
-      "Wholesale and export sourcing for oncology formulations — how Life Cure lists anti cancer products and handles specialist enquiries.",
+      "Wholesale and export sourcing for oncology formulations — how Faith Health Care lists anti cancer products and handles specialist enquiries.",
     category: "Anti Cancer",
     publishedAt: "2026-08-04",
     updatedAt: "2026-08-13",
@@ -211,7 +211,7 @@ export const INSIGHTS: InsightArticle[] = [
       {
         paragraphs: [
           "Oncology and anti cancer lines often include injectables, tablets, and capsules with stricter cold-chain or documentation expectations. Export partners should plan longer lead times and confirm market registration requirements independently.",
-          "Life Cure lists anti cancer products in a dedicated catalog category. Use product detail pages for composition and pack information, then enquire for wholesale pricing and availability.",
+          "Faith Health Care lists anti cancer products in a dedicated catalog category. Use product detail pages for composition and pack information, then enquire for wholesale pricing and availability.",
         ],
       },
       {
@@ -310,7 +310,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "ed-medicines-wholesale-export",
     title: "ED medicines wholesale export from India",
     description:
-      "Trade guide for distributors sourcing ED category tablets and related formulations — Life Cure catalog and enquiry process.",
+      "Trade guide for distributors sourcing ED category tablets and related formulations — Faith Health Care catalog and enquiry process.",
     category: "ED Medicines",
     publishedAt: "2026-08-06",
     updatedAt: "2026-08-13",
@@ -364,7 +364,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "antiviral-medicines-export",
     title: "Antiviral medicines export for wholesale partners",
     description:
-      "Sourcing antiviral tablets, capsules, and injectables from India — category overview and Life Cure export enquiry flow.",
+      "Sourcing antiviral tablets, capsules, and injectables from India — category overview and Faith Health Care export enquiry flow.",
     category: "Antiviral",
     publishedAt: "2026-08-07",
     updatedAt: "2026-08-13",
@@ -417,7 +417,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "skin-care-pharma-wholesale",
     title: "Skin care pharma wholesale: creams, gels, and topical supply",
     description:
-      "How distributors source dermatology and skin care medicines in bulk — Life Cure topical category and MOQ notes.",
+      "How distributors source dermatology and skin care medicines in bulk — Faith Health Care topical category and MOQ notes.",
     category: "Skin Care",
     publishedAt: "2026-08-08",
     updatedAt: "2026-08-13",
@@ -485,7 +485,7 @@ export const INSIGHTS: InsightArticle[] = [
     sections: [
       {
         paragraphs: [
-          "Cardiovascular and antihypertensive lines are staple wholesale categories for pharmacy distributors. Life Cure lists Cardiac and Antihypertensive products separately in the catalog — filter by parent category to build your formulary.",
+          "Cardiovascular and antihypertensive lines are staple wholesale categories for pharmacy distributors. Faith Health Care lists Cardiac and Antihypertensive products separately in the catalog — filter by parent category to build your formulary.",
           "Many partners combine cardiac tablets with anti diabetics and general medicines in recurring monthly orders.",
         ],
       },
@@ -519,7 +519,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "steroids-wholesale-export",
     title: "Steroids wholesale export: bulk supply from India",
     description:
-      "How distributors source steroid tablets and injectables in wholesale — Life Cure catalog, MOQ, and export enquiry tips.",
+      "How distributors source steroid tablets and injectables in wholesale — Faith Health Care catalog, MOQ, and export enquiry tips.",
     category: "Steroids",
     publishedAt: "2026-08-10",
     readMinutes: 5,
@@ -533,7 +533,7 @@ export const INSIGHTS: InsightArticle[] = [
       {
         paragraphs: [
           "Steroid formulations — tablets and injectables — are a regular wholesale category for pharmacy distributors and specialty export partners. Demand is often SKU-specific, so clear molecule and strength lists speed up quoting.",
-          "Life Cure groups these products under the Steroids parent category. Filter by dosage form in the catalog, review pack details on each product page, then enquire with quantity and destination market.",
+          "Faith Health Care groups these products under the Steroids parent category. Filter by dosage form in the catalog, review pack details on each product page, then enquire with quantity and destination market.",
         ],
       },
       {
@@ -578,7 +578,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "hiv-drugs-wholesale-export",
     title: "HIV drugs wholesale export for pharmacy and hospital partners",
     description:
-      "Sourcing HIV antiretroviral medicines in bulk from India — catalog navigation, documentation, and Life Cure enquiry flow.",
+      "Sourcing HIV antiretroviral medicines in bulk from India — catalog navigation, documentation, and Faith Health Care enquiry flow.",
     category: "HIV Drugs",
     publishedAt: "2026-08-11",
     readMinutes: 5,
@@ -637,7 +637,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "general-medicines-wholesale-supply",
     title: "General medicines wholesale supply for everyday pharmacy lines",
     description:
-      "Bulk sourcing for general pharmaceutical tablets and capsules — how Life Cure’s largest category supports mixed wholesale cartons.",
+      "Bulk sourcing for general pharmaceutical tablets and capsules — how Faith Health Care’s largest category supports mixed wholesale cartons.",
     category: "General Medicines",
     publishedAt: "2026-08-12",
     readMinutes: 5,
@@ -688,7 +688,7 @@ export const INSIGHTS: InsightArticle[] = [
       {
         question: "Where are you based?",
         answer:
-          "Life Cure operates from Nagpur, Maharashtra, India, with GST and IEC verification for wholesale and export trade.",
+          "Faith Health Care operates from India, with GST and IEC verification for wholesale and export trade.",
       },
     ],
   },
@@ -696,7 +696,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "anti-anxiety-medicines-wholesale",
     title: "Anti anxiety medicines wholesale for pharmacy distributors",
     description:
-      "Bulk sourcing of anxiolytic tablets and related formulations — Life Cure catalog, MOQ, and export enquiry tips.",
+      "Bulk sourcing of anxiolytic tablets and related formulations — Faith Health Care catalog, MOQ, and export enquiry tips.",
     category: "Anti Anxiety",
     publishedAt: "2026-08-13",
     readMinutes: 5,
@@ -755,7 +755,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "fertility-medicines-wholesale-export",
     title: "Fertility medicines wholesale export from India",
     description:
-      "How partners source fertility and reproductive-health formulations in bulk — Life Cure catalog navigation and trade documents.",
+      "How partners source fertility and reproductive-health formulations in bulk — Faith Health Care catalog navigation and trade documents.",
     category: "Fertility",
     publishedAt: "2026-08-13",
     readMinutes: 5,
@@ -814,7 +814,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "weight-loss-medicines-wholesale",
     title: "Weight loss medicines wholesale for pharmacy partners",
     description:
-      "Bulk supply of weight-management pharmaceutical lines — catalog filter, MOQ notes, and Life Cure enquiry flow.",
+      "Bulk supply of weight-management pharmaceutical lines — catalog filter, MOQ notes, and Faith Health Care enquiry flow.",
     category: "Weight Loss",
     publishedAt: "2026-08-13",
     readMinutes: 4,
@@ -857,9 +857,9 @@ export const INSIGHTS: InsightArticle[] = [
           "We handle export enquiries where import is permitted. Confirm local rules independently.",
       },
       {
-        question: "Where is Life Cure based?",
+        question: "Where is Faith Health Care based?",
         answer:
-          "Nagpur, Maharashtra, India — GST and IEC verified for wholesale trade.",
+          "India — GST and IEC verified for wholesale trade.",
       },
     ],
   },
@@ -867,7 +867,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "anti-parasitic-medicines-wholesale",
     title: "Anti parasitic medicines wholesale export guide",
     description:
-      "Sourcing antiparasitic tablets and formulations in bulk — Life Cure catalog, documentation, and partner enquiry tips.",
+      "Sourcing antiparasitic tablets and formulations in bulk — Faith Health Care catalog, documentation, and partner enquiry tips.",
     category: "Anti Parasitic",
     publishedAt: "2026-08-13",
     readMinutes: 5,
@@ -926,7 +926,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "sleeping-pills-wholesale-export",
     title: "Sleeping pills wholesale export for pharmacy distributors",
     description:
-      "Bulk supply of sleep-aid and sedative-hypnotic formulations — Life Cure catalog category and trade enquiry notes.",
+      "Bulk supply of sleep-aid and sedative-hypnotic formulations — Faith Health Care catalog category and trade enquiry notes.",
     category: "Sleeping Pills",
     publishedAt: "2026-08-13",
     readMinutes: 4,
@@ -979,7 +979,7 @@ export const INSIGHTS: InsightArticle[] = [
     slug: "thyroid-medicines-wholesale",
     title: "Thyroid medicines wholesale for pharmacy and export partners",
     description:
-      "Bulk sourcing of thyroid and hormone-related formulations — Life Cure catalog filter, MOQ notes, and enquiry tips.",
+      "Bulk sourcing of thyroid and hormone-related formulations — Faith Health Care catalog filter, MOQ notes, and enquiry tips.",
     category: "Thyroid",
     publishedAt: "2026-08-13",
     updatedAt: "2026-08-13",

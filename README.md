@@ -1,6 +1,6 @@
-# Vitalwave
+# Faith Health Care
 
-Pharmaceutical product catalog for Vitalwave — browse medicines and enquire via WhatsApp.
+Pharmaceutical product catalog and wholesale export desk for Faith Health Care — browse certified formulations and enquire instantly via WhatsApp or Email.
 
 ## Stack
 
@@ -9,48 +9,24 @@ Pharmaceutical product catalog for Vitalwave — browse medicines and enquire vi
 - Tailwind CSS
 - Static JSON data (`/data/medicines.json`)
 
-## Setup
+## Contact Setup
+
+- **Brand**: Faith Health Care
+- **WhatsApp**: +91 70200 96898 (`NEXT_PUBLIC_WHATSAPP_NUMBER=917020096898`)
+- **Email**: faithhealthcare5@gmail.com (`NEXT_PUBLIC_CONTACT_EMAIL=faithhealthcare5@gmail.com`)
+
+## Setup & Running Locally
 
 ```bash
 npm install
-cp .env.example .env.local
-# Set NEXT_PUBLIC_WHATSAPP_NUMBER=91XXXXXXXXXX
-npm run dev
+npm run dev -- -p 3002
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
-
-## Environment
-
-| Variable | Description |
-|---|---|
-| `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number in international format, no `+` or spaces (e.g. `918857030167`) |
-| `NEXT_PUBLIC_TELEGRAM_USERNAME` | Telegram username without `@` for direct enquiry chat (e.g. `vitalwave`) |
+Open [http://localhost:3002](http://localhost:3002).
 
 ## Scripts
 
-- `npm run dev` — local development
+- `npm run dev` — local development server
 - `npm run build` — production build
 - `npm start` — serve production build
 - `npm run lint` — ESLint
-
-## Deploy on Vercel
-
-1. Push the repo to GitHub.
-2. Import the project in Vercel.
-3. Add `NEXT_PUBLIC_WHATSAPP_NUMBER` and `NEXT_PUBLIC_TELEGRAM_USERNAME` in Project Settings → Environment Variables.
-4. Deploy.
-
-No database or server-only APIs are required — the site is static-friendly on Vercel's free tier.
-
-## SEO & Insights
-
-The `/insights` section publishes B2B wholesale guides linked to catalog categories. After deploy:
-
-1. **Google Search Console** — add property `https://vitalwave.vercel.app`, submit sitemap `/sitemap.xml`.
-2. **Validate rich results** — test any `/insights/[slug]` URL in [Google Rich Results Test](https://search.google.com/test/rich-results) (Article, BreadcrumbList, FAQPage).
-3. **Baseline metrics** — after 2 weeks, review impressions/clicks for queries containing `wholesale`, `export`, `pharma`, and category names (Antibiotics, ED Medicines, etc.).
-4. **Content updates** — edit `src/lib/insights-content.ts`; set `updatedAt` when revising an article.
-
-Cross-links: catalog category filters, product pages, and home category cards link to matching guides where available. Aliases: Antihypertensive → Cardiac; Antiemetics → General Medicines; Human Growth Hormones → Steroids.
-

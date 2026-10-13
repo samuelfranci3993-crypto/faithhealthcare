@@ -9,35 +9,41 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        brand: {
+          DEFAULT: "#0284c7", // Light/Medical Sky Blue
+          hover: "#0369a1",
+          dark: "#075985",
+          light: "#e0f2fe", // Soft pastel sky blue
+          mist: "#f0f9ff", // Crisp ice blue
+          peach: "#f0f9ff", // Soft blue wash
+          orange: "#0ea5e9", // Electric sky
+          yellow: "#38bdf8", // Cyan sky accent
+        },
         ink: {
-          DEFAULT: "#0a192f",
-          soft: "#1e293b",
-          muted: "#475569",
+          DEFAULT: "#0f172a", // Deep slate
+          soft: "#334155",
+          muted: "#64748b",
         },
         emerald: {
-          DEFAULT: "#059669",
-          deep: "#047857",
-          dark: "#064e3b",
-          soft: "#d1fae5",
-          mist: "#ecfdf5",
-          glow: "#10b981",
+          DEFAULT: "#0284c7",
+          deep: "#0369a1",
+          soft: "#e0f2fe",
+          mist: "#f0f9ff",
         },
         teal: {
-          DEFAULT: "#059669",
-          deep: "#047857",
-          soft: "#d1fae5",
-          mist: "#ecfdf5",
+          DEFAULT: "#0284c7",
+          deep: "#0369a1",
+          soft: "#e0f2fe",
+          mist: "#f0f9ff",
         },
-        navy: {
-          DEFAULT: "#0a192f",
-          dark: "#050d1a",
-          surface: "#0f233f",
-          soft: "#1e293b",
-          subtle: "#e2e8f0",
+        sky: {
+          DEFAULT: "#0284c7",
+          light: "#e0f2fe",
+          dark: "#0369a1",
         },
-        sage: "#059669",
-        sand: "#f8fafc",
         line: "#e2e8f0",
+        sand: "#f8fafc",
+        sage: "#64748b",
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],

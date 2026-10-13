@@ -15,9 +15,6 @@ export type Medicine = {
   certifications?: string[];
   brand?: string | null;
   strength?: string | null;
-  indiaMartId?: string;
-  indiaMartCategory?: string | null;
-  source?: string;
   specs?: Record<string, string>;
 };
 

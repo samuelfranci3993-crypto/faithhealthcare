@@ -22,6 +22,7 @@ type CatalogBrowserProps = {
   parentCategories: string[];
   initialParent?: string;
   initialSubcategory?: string;
+  initialQuery?: string;
 };
 
 export default function CatalogBrowser({
@@ -29,10 +30,15 @@ export default function CatalogBrowser({
   parentCategories,
   initialParent = "All",
   initialSubcategory = "All",
+  initialQuery = "",
 }: CatalogBrowserProps) {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
   const [parent, setParent] = useState(initialParent);
   const [subcategory, setSubcategory] = useState(initialSubcategory);
+
+  useEffect(() => {
+    setQuery(initialQuery);
+  }, [initialQuery]);
 
   useEffect(() => {
     setParent(initialParent);
@@ -84,7 +90,7 @@ export default function CatalogBrowser({
   }, [medicines, query, parent, subcategory]);
 
   const resetKey = `${parent}|${subcategory}|${query}`;
-  const allTone = { accent: "#059669", wash: "rgba(5,150,105,0.12)" };
+  const allTone = { accent: "#0284c7", wash: "rgba(2,132,199,0.12)" };
   const categoryInsight =
     parent !== "All" ? getPrimaryInsightForCategory(parent) : undefined;
 

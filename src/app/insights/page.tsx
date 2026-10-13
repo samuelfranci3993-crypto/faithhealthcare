@@ -8,12 +8,12 @@ import { COMPANY } from "@/lib/trust";
 export const metadata: Metadata = {
   title: "Insights",
   description:
-    "Wholesale and export guides by therapeutic category — antibiotics, anti cancer, ED medicines, and pharma export from India. Life Cure, Nagpur.",
+    "Wholesale and export guides by therapeutic category — antibiotics, anti cancer, ED medicines, and pharma export from India. Faith Health Care, India.",
   alternates: {
     canonical: `${COMPANY.siteUrl}/insights`,
   },
   openGraph: {
-    title: "Wholesale & export guides | Life Cure Insights",
+    title: "Wholesale & export guides | Faith Health Care Insights",
     description:
       "Trade-focused articles linked to our catalog categories for distributors and export partners.",
     url: `${COMPANY.siteUrl}/insights`,

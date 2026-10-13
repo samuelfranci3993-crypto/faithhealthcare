@@ -7,7 +7,7 @@ import { getReviewStats } from "@/lib/reviews-store";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Life Cure — Nagpur-based pharmaceutical wholesaler, distributor & exporter. GST & IEC verified. Est. 2021.",
+    "Faith Health Care — Indian pharmaceutical wholesaler, distributor & exporter. GST & IEC verified. Est. 2021.",
 };
 
 const facts: {
@@ -28,7 +28,7 @@ const facts: {
   },
   {
     label: "Legal status",
-    value: "Proprietorship",
+    value: "Commercial Enterprise",
     detail: "Registered Indian business",
     accent: "#0a192f",
     wash: "rgba(10, 25, 47, 0.12)",
@@ -37,7 +37,7 @@ const facts: {
   {
     label: "Established",
     value: "2021",
-    detail: "GST registered · 2023",
+    detail: "GST & Export Certified",
     accent: "#10b981",
     wash: "rgba(16, 185, 129, 0.14)",
     icon: <CalendarIcon />,
@@ -94,7 +94,7 @@ export default function AboutPage() {
         data-scroll
         className="grid items-start gap-x-8 gap-y-4 md:grid-cols-[auto_1fr] md:gap-x-12"
       >
-        <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 shadow-md ring-1 ring-emerald-500/20 md:h-24 md:w-24">
+        <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-sky-700 shadow-md ring-1 ring-sky-500/20 md:h-24 md:w-24">
           <svg viewBox="0 0 24 24" fill="none" className="h-10 w-10 text-white">
             <path
               d="M12 4v16m-8-8h16"
@@ -106,9 +106,9 @@ export default function AboutPage() {
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-emerald-600 font-semibold">About</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-sky-600 font-semibold">About</p>
           <h1 className="mt-2 font-display text-4xl text-ink md:text-5xl">
-            Life Cure
+            Faith Health Care
           </h1>
 
           <ul className="mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-[0.8rem] text-ink-soft/80">
@@ -118,7 +118,7 @@ export default function AboutPage() {
             </li>
             <li
               className="inline-flex items-center gap-1 font-medium text-[#0f6b63]"
-              title="Registered · Maharashtra (27)"
+              title="Registered Indian Exporter"
             >
               <GstBadgeIcon />
               GST verified
@@ -157,25 +157,11 @@ export default function AboutPage() {
 
         <div className="max-w-3xl md:col-span-2">
           <p className="text-base leading-relaxed text-ink-soft/85 md:text-lg">
-            Established in 2021, Life Cure is a Nagpur-based exporter,
-            manufacturer, wholesaler, and trader of pharmaceutical tablets,
-            capsules, injections, creams, and related specialty medicines.
+            Faith Health Care is an established Indian exporter, manufacturer, wholesaler, and trader of pharmaceutical tablets, capsules, injections, creams, and related specialty medicines.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-ink-soft/75 md:text-base">
-            We focus on reliable supply, clear communication, and quality
-            products for domestic and international partners — with transparent
-            trade terms and responsive enquiry handling on WhatsApp or Telegram.
+            We focus on reliable supply, clear communication, and quality products for domestic and international partners — with transparent trade terms and responsive enquiry handling.
           </p>
-
-          <a
-            href="https://www.indiamart.com/vitalwave/profile.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-teal underline-offset-4 hover:underline"
-          >
-            View company profile on IndiaMART
-            <ExternalIcon />
-          </a>
         </div>
       </header>
 
@@ -254,7 +240,7 @@ export default function AboutPage() {
             Top export markets
           </h2>
           <p className="mt-0.5 max-w-xl text-[0.7rem] text-ink-soft/70">
-            Primary destinations listed on our IndiaMART company profile.
+            Primary international pharmaceutical destinations.
           </p>
         </div>
         <ul className="flex flex-wrap gap-1.5">
@@ -284,18 +270,18 @@ export default function AboutPage() {
           {
             title: "Browse",
             text: "Filter by category & dosage form.",
-            accent: "#0f6b63",
+            accent: "#0284c7",
             icon: <SearchIcon />,
           },
           {
             title: "Enquire",
-            text: "WhatsApp or Telegram in one tap.",
+            text: "WhatsApp or email quote in one tap.",
             accent: "#25D366",
             icon: <ChatIcon />,
           },
           {
             title: "Supply",
-            text: "Wholesale & export from Nagpur.",
+            text: "Wholesale & export from India.",
             accent: "#1a5f7a",
             icon: <TruckIcon />,
           },

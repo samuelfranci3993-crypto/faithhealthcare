@@ -30,7 +30,7 @@ export default function ArticleJsonLd({ article, url }: ArticleJsonLdProps) {
         url: COMPANY.siteUrl,
         logo: {
           "@type": "ImageObject",
-          url: `${COMPANY.siteUrl}/images/brand/lifecure-logo.svg`,
+          url: `${COMPANY.siteUrl}/images/brand/faithhealthcare-logo.svg`,
         },
       },
       mainEntityOfPage: {

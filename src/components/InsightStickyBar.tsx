@@ -28,7 +28,7 @@ export default function InsightStickyBar({
   }, []);
 
   const shareMessage = encodeURIComponent(
-    `I read "${shareTitle}" on Life Cure — ${shareUrl}`
+    `I read "${shareTitle}" on Faith Health Care — ${shareUrl}`
   );
   const whatsappShare = `https://wa.me/?text=${shareMessage}`;
 

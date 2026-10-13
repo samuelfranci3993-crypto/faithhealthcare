@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/lib/cart-context";
@@ -18,16 +19,13 @@ export default function CartDrawer() {
     clearCart,
   } = useCart();
 
-  const { user } = useUser();
+  const { user, openAuthModal } = useUser();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
 
-  const whatsappNumber =
-    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918857030167";
-
   const handleWhatsAppCheckout = () => {
-    if (items.length === 0) return;
+    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917020096898";
 
-    let message = `Hello Life Cure team,\nI would like to place a bulk enquiry for the following items:\n\n`;
+    let message = `Hello Faith Health Care team,\nI would like to place an instant wholesale order enquiry for the following items:\n\n`;
     items.forEach((item, index) => {
       message += `${index + 1}. *${item.name}*\n   Qty: ${item.quantity} | Est: $${(item.price * item.quantity).toFixed(2)}\n`;
     });
@@ -35,11 +33,11 @@ export default function CartDrawer() {
     message += `\n*Total Items*: ${totalItems}`;
     message += `\n*Estimated Total*: $${subtotal.toFixed(2)}`;
 
-    if (user) {
+    if (user && user.name) {
       message += `\n\n*Customer Details*:`;
       message += `\n• Name: ${user.name}`;
-      message += `\n• Email: ${user.email}`;
-      message += `\n• Phone: ${user.phone}`;
+      if (user.email) message += `\n• Email: ${user.email}`;
+      if (user.phone) message += `\n• Phone: ${user.phone}`;
       if (user.country) message += `\n• Destination: ${user.country}`;
       if (user.company) message += `\n• Company: ${user.company}`;
     }
@@ -47,7 +45,8 @@ export default function CartDrawer() {
     message += `\n\nPlease confirm availability and shipping details. Thank you!`;
 
     const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/${whatsappNumber}?text=${encoded}`, "_blank");
+    const url = `https://wa.me/${whatsappNumber}?text=${encoded}`;
+    window.open(url, "_blank");
   };
 
   if (!isCartOpen) return null;
@@ -63,7 +62,7 @@ export default function CartDrawer() {
 
       {/* Slide-over Drawer */}
       <aside
-        className="fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-md flex-col bg-slate-900 text-slate-100 shadow-2xl transition-transform duration-300 animate-in slide-in-from-right sm:border-l sm:border-teal-500/20"
+        className="fixed bottom-0 right-0 top-0 z-50 flex w-full max-w-md flex-col bg-slate-900 text-slate-100 shadow-2xl transition-transform duration-300 animate-in slide-in-from-right sm:border-l sm:border-slate-800"
         role="dialog"
         aria-modal="true"
         aria-label="Shopping Cart"
@@ -71,7 +70,7 @@ export default function CartDrawer() {
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-800 px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-500/20 text-teal-300">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/20 text-brand">
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
                 <path
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
@@ -132,7 +131,7 @@ export default function CartDrawer() {
               <Link
                 href="/catalog"
                 onClick={() => setIsCartOpen(false)}
-                className="mt-6 rounded-full bg-teal-500 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-slate-950 transition hover:bg-teal-400"
+                className="mt-6 rounded-full bg-brand px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-hover active:scale-95"
               >
                 Browse Catalog
               </Link>
@@ -143,13 +142,17 @@ export default function CartDrawer() {
                 key={item.id}
                 className="flex items-center gap-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-3.5 transition hover:border-slate-700"
               >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="h-16 w-16 shrink-0 rounded-xl bg-white/10 object-contain p-2"
-                />
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-white/10">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-contain p-2"
+                    sizes="64px"
+                  />
+                </div>
                 <div className="flex-1 min-w-0">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-teal-400">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand">
                     {item.category}
                   </span>
                   <h3 className="line-clamp-1 text-sm font-semibold text-white">
@@ -169,7 +172,7 @@ export default function CartDrawer() {
                       >
                         -
                       </button>
-                      <span className="px-2 text-xs font-bold text-teal-300">
+                      <span className="px-2 text-xs font-bold text-white">
                         {item.quantity}
                       </span>
                       <button
@@ -245,7 +248,7 @@ export default function CartDrawer() {
                 <Link
                   href="/cart"
                   onClick={() => setIsCartOpen(false)}
-                  className="text-xs font-bold text-teal-400 hover:underline"
+                  className="text-xs font-bold text-brand hover:underline"
                 >
                   View Full Cart Page &rarr;
                 </Link>
