@@ -9,7 +9,7 @@ import {
   toneForForm,
 } from "@/lib/categoryStyle";
 import { getPrimaryInsightForCategory } from "@/lib/insights";
-import { formatUsd, inrToUsd, parseUnitPrice } from "@/lib/price";
+import { formatUsd, parseUnitPrice } from "@/lib/price";
 import { presentFields } from "@/lib/medicines";
 import EnquireButton from "./EnquireButton";
 import ProductGallery from "./ProductGallery";
@@ -57,7 +57,7 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
   const formTone = toneForForm(medicine.category || medicine.dosageForm);
   const glyph = dosageGlyph(medicine.category || medicine.dosageForm);
   const unit = parseUnitPrice(medicine.price);
-  const unitUsd = unit ? inrToUsd(unit.amountInr) : null;
+  const unitUsd = unit ? unit.amountUsd : null;
   const relatedGuide = getPrimaryInsightForCategory(
     medicine.parentCategory || medicine.category
   );
@@ -180,7 +180,7 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
           <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
             <div className="flex items-baseline gap-2">
               <span className="text-sm text-slate-400 line-through">
-                MRP {medicine.price ? `₹${(Math.round((unit?.amountInr || 850) * 1.25)).toLocaleString()}` : "₹1,200"}
+                MRP ${((unit?.amountUsd || 15) * 1.25).toFixed(2)}
               </span>
               <span className="rounded bg-emerald-50 px-2 py-0.5 text-xs font-extrabold text-emerald-700">
                 20% OFF
@@ -190,7 +190,9 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
             <div className="mt-1 flex items-baseline justify-between">
               <p className="text-2xl font-black text-slate-950">
                 {medicine.price || (unitUsd ? formatUsd(unitUsd) : "Wholesale Rate on Request")}
-                {unit && <span className="text-sm font-normal text-slate-500"> / {unit.unit}</span>}
+                {unit && !medicine.price?.includes("/") && (
+                  <span className="text-sm font-normal text-slate-500"> / {unit.unit}</span>
+                )}
               </p>
               <span className="text-xs font-bold text-brand uppercase">
                 Export Wholesale Price

@@ -6,7 +6,7 @@ import { useState } from "react";
 import type { Medicine } from "@/types/medicine";
 import { snippet } from "@/lib/medicines";
 import { dosageGlyph } from "@/lib/categoryStyle";
-import { inrToUsd, parseUnitPrice } from "@/lib/price";
+import { parseUnitPrice } from "@/lib/price";
 import { useCart } from "@/lib/cart-context";
 import { useUser } from "@/lib/user-context";
 
@@ -31,16 +31,16 @@ export default function MedicineCard({
   const summary = snippet(medicine.description || medicine.composition, 75);
   const glyph = dosageGlyph(medicine.category || medicine.dosageForm);
   const unit = parseUnitPrice(medicine.price);
-  const itemPriceUsd = unit ? inrToUsd(unit.amountInr) : 15.0;
+  const itemPriceUsd = unit ? unit.amountUsd : 15.0;
 
   // Rating calculation (deterministic 4.5 - 4.9)
   const ratingValue = (4.5 + ((index * 7 + (medicine.name.length % 5)) % 5) * 0.1).toFixed(1);
   const reviewCount = 42 + ((index * 13 + medicine.slug.length * 3) % 180);
 
-  // MRP calculation for wholesale discount badge
-  const indicativeInr = unit ? unit.amountInr : 850;
-  const mrpInr = Math.round(indicativeInr * 1.25);
-  const discountPct = Math.round(((mrpInr - indicativeInr) / mrpInr) * 100);
+  // MRP calculation for wholesale discount badge (USD)
+  const indicativeUsd = unit ? unit.amountUsd : 15.0;
+  const mrpUsd = indicativeUsd * 1.25;
+  const discountPct = 20;
 
   // 1-Click Fast Direct Add (no blocking login modal)
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -150,26 +150,26 @@ export default function MedicineCard({
             <span>Direct Dispatch · 100% Genuine</span>
           </div>
 
-          {/* Pricing Section */}
-          <div className="mt-3 pt-2 border-t border-slate-100">
-            <div className="flex items-baseline gap-2">
-              <span className="text-xs text-slate-400 line-through">
-                MRP ₹{mrpInr.toLocaleString()}
-              </span>
-              <span className="rounded bg-sky-50 px-1.5 py-0.5 text-[10px] font-extrabold text-sky-700">
-                {discountPct}% OFF
-              </span>
-            </div>
+            {/* Pricing Section (USD) */}
+            <div className="mt-3 pt-2 border-t border-slate-100">
+              <div className="flex items-baseline gap-2">
+                <span className="text-xs text-slate-400 line-through">
+                  MRP ${mrpUsd.toFixed(2)}
+                </span>
+                <span className="rounded bg-sky-50 px-1.5 py-0.5 text-[10px] font-extrabold text-sky-700">
+                  {discountPct}% OFF
+                </span>
+              </div>
 
-            <div className="mt-0.5 flex items-baseline justify-between">
-              <p className="text-base font-extrabold text-slate-950">
-                {medicine.price || `₹${indicativeInr.toLocaleString()}`}
-              </p>
-              <p className="text-[11px] font-semibold text-sky-600">
-                Wholesale Export Rate
-              </p>
+              <div className="mt-0.5 flex items-baseline justify-between">
+                <p className="text-base font-extrabold text-slate-950">
+                  {medicine.price || `$ ${indicativeUsd.toFixed(2)}`}
+                </p>
+                <p className="text-[11px] font-semibold text-sky-600">
+                  Wholesale Export Rate
+                </p>
+              </div>
             </div>
-          </div>
         </div>
       </Link>
 

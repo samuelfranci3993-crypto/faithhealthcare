@@ -8,7 +8,7 @@ import { useCart } from "@/lib/cart-context";
 import { useUser } from "@/lib/user-context";
 import type { Medicine } from "@/types/medicine";
 import medicinesData from "../../data/medicines.json";
-import { inrToUsd, parseUnitPrice } from "@/lib/price";
+import { parseUnitPrice } from "@/lib/price";
 
 const medicines = medicinesData as unknown as Medicine[];
 
@@ -74,7 +74,7 @@ export default function Navbar() {
     e.preventDefault();
     e.stopPropagation();
     const unit = parseUnitPrice(med.price);
-    const priceUsd = unit ? inrToUsd(unit.amountInr) : 15.0;
+    const priceUsd = unit ? unit.amountUsd : 15.0;
     const item = {
       id: med.slug,
       slug: med.slug,

@@ -12,7 +12,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { formatUsd, inrToUsd, parseUnitPrice } from "@/lib/price";
+import { formatUsd, parseUnitPrice } from "@/lib/price";
 import { useUser } from "@/lib/user-context";
 import { COUNTRY_CODES, DEFAULT_COUNTRY } from "@/lib/countries";
 
@@ -422,7 +422,7 @@ export default function EnquiryModal({
 
   const unitPrice = useMemo(() => parseUnitPrice(price), [price]);
   const quantityNum = Math.max(0, Number.parseInt(form.quantity, 10) || 0);
-  const unitUsd = unitPrice ? inrToUsd(unitPrice.amountInr) : null;
+  const unitUsd = unitPrice ? unitPrice.amountUsd : null;
   const approxTotalUsd =
     unitUsd != null && quantityNum > 0 ? unitUsd * quantityNum : null;
 

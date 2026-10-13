@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Medicine } from "@/types/medicine";
-import { inrToUsd, parseUnitPrice } from "@/lib/price";
+import { parseUnitPrice } from "@/lib/price";
 import { useCart } from "@/lib/cart-context";
 import { useUser } from "@/lib/user-context";
 
@@ -67,7 +67,7 @@ export default function ExpressSearchHero({ medicines }: ExpressSearchHeroProps)
     e.preventDefault();
     e.stopPropagation();
     const unit = parseUnitPrice(medicine.price);
-    const priceUsd = unit ? inrToUsd(unit.amountInr) : 15.0;
+    const priceUsd = unit ? unit.amountUsd : 15.0;
 
     const item = {
       id: medicine.slug,
