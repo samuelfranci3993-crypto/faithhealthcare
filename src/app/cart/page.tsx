@@ -28,15 +28,13 @@ export default function CartPage() {
   const handleWhatsAppCheckout = () => {
     if (items.length === 0) return;
 
-    let message = `Hello Faith Health Care team,\nI would like to place an instant wholesale order quote for the following items:\n\n`;
+    let message = `Hello Faith Health Care team,\nI would like to place an official wholesale quotation request for the following items:\n\n`;
     items.forEach((item, index) => {
-      message += `${index + 1}. *${item.name}*\n   Qty: ${item.quantity} | Est: $${(item.price * item.quantity).toFixed(2)}\n`;
+      message += `${index + 1}. *${item.name}*\n   Category: ${item.category || "General"} | Qty: ${item.quantity}\n`;
     });
 
-    message += `\n*Total Items*: ${totalItems}`;
-    message += `\n*Subtotal*: $${subtotal.toFixed(2)}`;
-    message += `\n*Estimated Shipping* (${totalItems} ${totalItems === 1 ? "unit" : "units"} - ${shippingTier}): $${shippingFee.toFixed(2)}`;
-    message += `\n*Estimated Order Total*: $${orderTotal.toFixed(2)}`;
+    message += `\n*Total Products Selected*: ${totalItems}`;
+    message += `\n*Pricing Terms*: Wholesale Export Rate on Request`;
 
     if (user && user.name) {
       message += `\n\n*Customer Details*:`;
@@ -74,7 +72,7 @@ export default function CartPage() {
             Export Wholesale Basket
           </span>
           <h1 className="mt-1 text-2xl font-black text-slate-900 sm:text-3xl">
-            My Order Cart ({totalItems} {totalItems === 1 ? "Item" : "Items"})
+            Wholesale Inquiry Basket ({totalItems} {totalItems === 1 ? "Product" : "Products"})
           </h1>
         </div>
         {items.length > 0 && (
@@ -149,8 +147,8 @@ export default function CartPage() {
                         Packaging: {item.packSize}
                       </p>
                     )}
-                    <p className="mt-1 text-sm font-extrabold text-slate-950">
-                      ${item.price.toFixed(2)} <span className="text-xs font-normal text-slate-400">/ unit est.</span>
+                    <p className="mt-1 text-xs font-bold text-emerald-600">
+                      Wholesale Price on Request
                     </p>
                   </div>
                 </div>
@@ -176,9 +174,9 @@ export default function CartPage() {
                   </div>
 
                   <div className="text-right">
-                    <p className="text-base font-black text-slate-900">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </p>
+                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+                      {item.quantity} {item.quantity === 1 ? "unit" : "units"}
+                    </span>
                   </div>
 
                   <button
@@ -204,48 +202,36 @@ export default function CartPage() {
           {/* Sidebar Summary Card */}
           <div className="h-fit space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-md">
             <h2 className="text-lg font-black text-slate-900 border-b border-slate-100 pb-4">
-              Order Quote Summary
+              Wholesale RFQ Summary
             </h2>
 
             <div className="space-y-3 text-sm">
               <div className="flex justify-between text-slate-600">
-                <span>Subtotal ({totalItems} {totalItems === 1 ? "item" : "items"})</span>
-                <span className="font-bold text-slate-900">${subtotal.toFixed(2)}</span>
+                <span>Selected Products</span>
+                <span className="font-bold text-slate-900">{totalItems} {totalItems === 1 ? "product" : "products"}</span>
               </div>
               <div className="flex justify-between items-start text-slate-600">
                 <div>
-                  <span className="block font-medium text-slate-700">Estimated Shipping</span>
-                  <span className="text-[11px] text-slate-500">{shippingTier}</span>
+                  <span className="block font-medium text-slate-700">Pricing Terms</span>
+                  <span className="text-[11px] text-slate-500">Volume-tiered export discounts</span>
                 </div>
-                <span className="font-bold text-emerald-600">${shippingFee.toFixed(2)}</span>
+                <span className="font-bold text-emerald-600">Quote on Request</span>
               </div>
               <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-bold text-slate-900">
-                <span>Estimated Total</span>
-                <span className="text-xl font-black text-slate-950">
-                  ${orderTotal.toFixed(2)}
+                <span>Cargo Dispatch</span>
+                <span className="text-base font-bold text-slate-800">
+                  Air &amp; Sea Cargo
                 </span>
               </div>
             </div>
 
-            {/* Shipping Tier Breakdown Guide */}
+            {/* Wholesale Quote Guide */}
             <div className="rounded-xl border border-sky-100 bg-sky-50/70 p-3 text-[11px] text-slate-600">
-              <p className="font-bold text-sky-900 mb-1">📦 Quantity-Based Shipping Tiers</p>
-              <div className="space-y-0.5 text-[10.5px]">
-                <p className={totalItems >= 1 && totalItems <= 5 ? "font-bold text-sky-800" : ""}>
-                  • 1–5 units: <strong>$15.00</strong> (Express Air Courier)
-                </p>
-                <p className={totalItems >= 6 && totalItems <= 15 ? "font-bold text-sky-800" : ""}>
-                  • 6–15 units: <strong>$25.00</strong> (Standard Courier)
-                </p>
-                <p className={totalItems >= 16 && totalItems <= 30 ? "font-bold text-sky-800" : ""}>
-                  • 16–30 units: <strong>$40.00</strong> (Medium Parcel)
-                </p>
-                <p className={totalItems >= 31 && totalItems <= 50 ? "font-bold text-sky-800" : ""}>
-                  • 31–50 units: <strong>$60.00</strong> (Bulk Freight)
-                </p>
-                <p className={totalItems > 50 ? "font-bold text-sky-800" : ""}>
-                  • 50+ units: <strong>$60.00 + $1.00/unit</strong>
-                </p>
+              <p className="font-bold text-sky-900 mb-1">📋 Wholesale Quotation Process</p>
+              <div className="space-y-1 text-[11px] leading-relaxed">
+                <p>• Submit your list of required items &amp; quantities.</p>
+                <p>• Receive commercial invoice with batch COA.</p>
+                <p>• Direct air cargo dispatch to your country.</p>
               </div>
             </div>
 
@@ -257,7 +243,7 @@ export default function CartPage() {
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
                   <path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.92.52 3.72 1.43 5.28L2 22l5.05-1.52a9.9 9.9 0 004.99 1.34h.01c5.46 0 9.89-4.4 9.89-9.83S17.5 2 12.04 2zm5.75 13.9c-.24.67-1.4 1.23-1.93 1.31-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.26-4.79-4.2-4.93-4.4-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.56-.35.75-.35h.54c.17 0 .4-.06.62.48.24.58.8 2 .87 2.14.07.14.12.3.02.49-.1.19-.14.3-.28.47-.14.16-.3.36-.43.49-.14.14-.29.29-.12.56.17.28.75 1.23 1.61 2 .97.87 1.97 1.23 2.25 1.37.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.19-.28.37-.23.62-.14.26.1 1.63.77 1.91.91.28.14.47.21.54.32.07.12.07.67-.17 1.34z" />
                 </svg>
-                <span>Instant 1-Click WhatsApp Order</span>
+                <span>Request Wholesale Quotation</span>
               </button>
 
               <button

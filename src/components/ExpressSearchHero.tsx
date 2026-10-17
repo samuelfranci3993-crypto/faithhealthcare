@@ -53,8 +53,8 @@ export default function ExpressSearchHero({ medicines }: ExpressSearchHeroProps)
     e.stopPropagation();
     const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917020096898";
     let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for:\n• *${medicine.name}*\n• Category: ${medicine.parentCategory || medicine.category || "General"}\n• Form: ${medicine.dosageForm || medicine.category || "Standard"}`;
-    if (medicine.price) {
-      msg += `\n• Listed Price: ${medicine.price}`;
+    if (medicine.packaging) {
+      msg += `\n• Packaging: ${medicine.packaging}`;
     }
     if (user) {
       msg += `\n\nBuyer: ${user.name} (${user.countryCode} ${user.phone}) - ${user.country}`;

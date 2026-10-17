@@ -17,7 +17,7 @@ export default function StickyQuickOrderBar() {
       (item) => `• ${item.name} (${item.category || "General"}) - Qty: ${item.quantity}`
     );
 
-    let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for my order:\n\n${lines.join("\n")}\n\nSubtotal: ${formatUsd(subtotal)}\nEstimated Shipping (${totalItems} items): ${formatUsd(shippingFee)}\nEstimated Order Total: ${formatUsd(orderTotal)}`;
+    let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for my inquiry basket:\n\n${lines.join("\n")}\n\nTotal Items Selected: ${totalItems}\n\nPlease provide your best wholesale export rates and shipping schedule.`;
 
     if (user && user.name) {
       msg += `\n\nCustomer Details:\n- Name: ${user.name}\n- Email: ${user.email}\n- Phone: ${user.countryCode} ${user.phone}\n- Destination: ${user.country}`;
@@ -54,13 +54,10 @@ export default function StickyQuickOrderBar() {
           </div>
           <div>
             <p className="text-xs font-semibold text-slate-300">
-              {totalItems} {totalItems === 1 ? "item" : "items"} in cart
+              {totalItems} {totalItems === 1 ? "product" : "products"} in basket
             </p>
-            <p className="font-bold text-sm text-white">
-              {formatUsd(orderTotal)}{" "}
-              <span className="text-[10px] font-normal text-slate-400">
-                (incl. {formatUsd(shippingFee)} ship)
-              </span>
+            <p className="font-bold text-sm text-emerald-400">
+              Wholesale Quote on Request
             </p>
           </div>
         </button>
@@ -72,7 +69,7 @@ export default function StickyQuickOrderBar() {
             onClick={() => setIsCartOpen(true)}
             className="hidden sm:inline-flex items-center rounded-xl border border-slate-700 bg-slate-800 px-3.5 py-2 text-xs font-bold text-slate-200 transition hover:bg-slate-700 active:scale-95"
           >
-            Review Cart
+            Review Basket
           </button>
           <button
             type="button"

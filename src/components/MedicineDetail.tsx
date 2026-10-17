@@ -40,8 +40,8 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
   const handleInstantWhatsApp = () => {
     const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917020096898";
     let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for:\n• *${medicine.name}*\n• Requested Qty: ${quantity}\n• Category: ${medicine.parentCategory || medicine.category || "General"}\n• Form: ${medicine.dosageForm || medicine.category || "Standard"}`;
-    if (medicine.price) {
-      msg += `\n• Listed Unit Price: ${medicine.price}`;
+    if (medicine.packaging) {
+      msg += `\n• Packaging: ${medicine.packaging}`;
     }
     if (user) {
       msg += `\n\nBuyer: ${user.name} (${user.countryCode} ${user.phone}) - ${user.country}`;
@@ -176,34 +176,31 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
             </span>
           </div>
 
-          {/* 1mg Price & Discount Block */}
+          {/* Wholesale Pricing on Request Block */}
           <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-            <div className="flex items-baseline gap-2">
-              <span className="text-sm text-slate-400 line-through">
-                MRP ${((unit?.amountUsd || 15) * 1.25).toFixed(2)}
-              </span>
-              <span className="rounded bg-emerald-50 px-2 py-0.5 text-xs font-extrabold text-emerald-700">
-                20% OFF
-              </span>
-            </div>
-
-            <div className="mt-1 flex items-baseline justify-between">
-              <p className="text-2xl font-black text-slate-950">
-                {medicine.price || (unitUsd ? formatUsd(unitUsd) : "Wholesale Rate on Request")}
-                {unit && !medicine.price?.includes("/") && (
-                  <span className="text-sm font-normal text-slate-500"> / {unit.unit}</span>
-                )}
-              </p>
-              <span className="text-xs font-bold text-brand uppercase">
-                Export Wholesale Price
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Pricing Tier
+                </p>
+                <p className="text-2xl font-black text-slate-950 mt-0.5">
+                  Wholesale Price on Request
+                </p>
+              </div>
+              <span className="rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800">
+                Bulk / Export Rates
               </span>
             </div>
 
-            <p className="mt-2 text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+            <p className="mt-2.5 text-xs text-slate-600 leading-relaxed">
+              Export quotation is customized based on order quantity, country destination, and air or sea cargo terms.
+            </p>
+
+            <p className="mt-2.5 text-[11px] text-emerald-700 font-semibold flex items-center gap-1 border-t border-slate-100 pt-2.5">
               <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span>In Stock · Ready for Direct Air &amp; Sea Cargo Dispatch</span>
+              <span>In Stock · Ready for Direct Air &amp; Sea Cargo Dispatch Worldwide</span>
             </p>
           </div>
 
@@ -247,7 +244,7 @@ export default function MedicineDetail({ medicine }: { medicine: Medicine }) {
                     strokeLinejoin="round"
                   />
                 </svg>
-                ADD TO CART ({quantity})
+                ADD TO INQUIRY BASKET ({quantity})
               </button>
 
               <button

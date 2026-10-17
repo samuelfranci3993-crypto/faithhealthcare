@@ -28,15 +28,13 @@ export default function CartDrawer() {
   const handleWhatsAppCheckout = () => {
     const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917020096898";
 
-    let message = `Hello Faith Health Care team,\nI would like to place an instant wholesale order enquiry for the following items:\n\n`;
+    let message = `Hello Faith Health Care team,\nI would like to request an official wholesale quotation for the following items:\n\n`;
     items.forEach((item, index) => {
-      message += `${index + 1}. *${item.name}*\n   Qty: ${item.quantity} | Est: $${(item.price * item.quantity).toFixed(2)}\n`;
+      message += `${index + 1}. *${item.name}*\n   Category: ${item.category || "General"} | Qty: ${item.quantity}\n`;
     });
 
-    message += `\n*Total Items*: ${totalItems}`;
-    message += `\n*Subtotal*: $${subtotal.toFixed(2)}`;
-    message += `\n*Estimated Shipping* (${totalItems} ${totalItems === 1 ? "unit" : "units"} - ${shippingTier}): $${shippingFee.toFixed(2)}`;
-    message += `\n*Estimated Order Total*: $${orderTotal.toFixed(2)}`;
+    message += `\n*Total Products Selected*: ${totalItems}`;
+    message += `\n*Pricing Terms*: Wholesale Export Rate on Request`;
 
     if (user && user.name) {
       message += `\n\n*Customer Details*:`;
@@ -88,10 +86,10 @@ export default function CartDrawer() {
             </div>
             <div>
               <h2 className="text-lg font-bold tracking-tight text-white">
-                Your Order Cart
+                Inquiry Basket
               </h2>
               <p className="text-xs text-slate-400">
-                {totalItems} {totalItems === 1 ? "item" : "items"} selected
+                {totalItems} {totalItems === 1 ? "product" : "products"} selected for quote
               </p>
             </div>
           </div>
@@ -164,8 +162,8 @@ export default function CartDrawer() {
                     {item.name}
                   </h3>
                   <div className="mt-1 flex items-center justify-between">
-                    <span className="text-sm font-bold text-emerald-400">
-                      ${item.price.toFixed(2)}
+                    <span className="text-xs font-semibold text-emerald-400">
+                      Quote on Request
                     </span>
 
                     {/* Quantity Controls */}
@@ -214,24 +212,18 @@ export default function CartDrawer() {
         {/* Footer & Actions */}
         {items.length > 0 && (
           <div className="border-t border-slate-800 bg-slate-950 p-6 space-y-3">
-            <div className="flex items-center justify-between text-xs text-slate-400">
-              <span>Subtotal ({totalItems} {totalItems === 1 ? "unit" : "units"})</span>
-              <span className="font-semibold text-white">${subtotal.toFixed(2)}</span>
-            </div>
-            <div className="flex items-center justify-between text-xs text-slate-400">
-              <div className="flex flex-col">
-                <span className="text-slate-300">Estimated Shipping</span>
-                <span className="text-[10px] text-slate-500">{shippingTier}</span>
+            <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-3 space-y-2">
+              <div className="flex items-center justify-between text-xs text-slate-300">
+                <span>Selected Products</span>
+                <span className="font-bold text-white">{totalItems} {totalItems === 1 ? "product" : "products"}</span>
               </div>
-              <span className="font-semibold text-emerald-400">
-                ${shippingFee.toFixed(2)}
-              </span>
-            </div>
-            <div className="border-t border-slate-800/80 pt-2 flex items-center justify-between text-base font-bold text-white">
-              <span>Est. Order Total</span>
-              <span className="text-xl font-extrabold text-emerald-400">
-                ${orderTotal.toFixed(2)}
-              </span>
+              <div className="flex items-center justify-between text-xs text-slate-400">
+                <span>Wholesale Pricing</span>
+                <span className="font-semibold text-emerald-400">Custom B2B Quotation</span>
+              </div>
+              <p className="text-[11px] text-slate-400 border-t border-slate-800/60 pt-2 leading-relaxed">
+                Volume discounts and express air/sea cargo rates are tailored based on your quantity and destination.
+              </p>
             </div>
 
             <div className="pt-2 flex flex-col gap-2.5">
@@ -242,7 +234,7 @@ export default function CartDrawer() {
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.099 4.017 4.103-1.076z" />
                 </svg>
-                Checkout via WhatsApp
+                Request Quotation via WhatsApp
               </button>
 
               <button

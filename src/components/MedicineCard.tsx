@@ -67,8 +67,8 @@ export default function MedicineCard({
     e.stopPropagation();
     const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917020096898";
     let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for:\n• ${medicine.name}\n• Category: ${medicine.category || "General"}\n• Form: ${medicine.dosageForm || "General"}`;
-    if (medicine.price) {
-      msg += `\n• Listed Price: ${medicine.price}`;
+    if (medicine.packaging) {
+      msg += `\n• Packaging: ${medicine.packaging}`;
     }
     if (user) {
       msg += `\n\nBuyer: ${user.name} (${user.countryCode} ${user.phone}) - ${user.country}`;
@@ -150,24 +150,20 @@ export default function MedicineCard({
             <span>Direct Dispatch · 100% Genuine</span>
           </div>
 
-            {/* Pricing Section (USD) */}
+            {/* Pricing Section: Price on Request for Wholesale */}
             <div className="mt-3 pt-2 border-t border-slate-100">
-              <div className="flex items-baseline gap-2">
-                <span className="text-xs text-slate-400 line-through">
-                  MRP ${mrpUsd.toFixed(2)}
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-extrabold text-slate-900">
+                    Price on Request
+                  </p>
+                  <p className="text-[11px] font-medium text-slate-500">
+                    Bulk &amp; Wholesale Rates
+                  </p>
+                </div>
+                <span className="rounded-full bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
+                  RFQ Desk
                 </span>
-                <span className="rounded bg-sky-50 px-1.5 py-0.5 text-[10px] font-extrabold text-sky-700">
-                  {discountPct}% OFF
-                </span>
-              </div>
-
-              <div className="mt-0.5 flex items-baseline justify-between">
-                <p className="text-base font-extrabold text-slate-950">
-                  {medicine.price || `$ ${indicativeUsd.toFixed(2)}`}
-                </p>
-                <p className="text-[11px] font-semibold text-sky-600">
-                  Wholesale Export Rate
-                </p>
               </div>
             </div>
         </div>

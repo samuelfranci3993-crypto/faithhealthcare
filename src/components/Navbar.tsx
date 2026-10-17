@@ -63,7 +63,7 @@ export default function Navbar() {
     e.preventDefault();
     e.stopPropagation();
     let msg = `Hello Faith Health Care,\n\nI would like an instant wholesale quotation for:\n• *${med.name}*\n• Category: ${med.category || "General"}\n• Form: ${med.dosageForm || "General"}`;
-    if (med.price) msg += `\n• Listed Price: ${med.price}`;
+    if (med.packaging) msg += `\n• Packaging: ${med.packaging}`;
     if (user) msg += `\n\nBuyer: ${user.name} (${user.countryCode} ${user.phone}) - ${user.country}`;
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
